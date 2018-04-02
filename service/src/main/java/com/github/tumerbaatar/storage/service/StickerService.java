@@ -1,4 +1,4 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import com.google.zxing.EncodeHintType;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,9 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.github.tumerbaatar.storage.model.Box;
-import org.github.tumerbaatar.storage.model.Part;
-import org.github.tumerbaatar.storage.model.StockEntry;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.StockEntry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

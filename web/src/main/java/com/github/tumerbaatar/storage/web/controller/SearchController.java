@@ -11,7 +11,7 @@ import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.Part;
 import com.github.tumerbaatar.storage.service.PartService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

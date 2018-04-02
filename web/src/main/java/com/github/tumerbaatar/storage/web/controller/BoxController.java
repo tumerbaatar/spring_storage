@@ -2,8 +2,8 @@ package com.github.tumerbaatar.storage.web.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.model.Box;
-import org.github.tumerbaatar.storage.model.BoxCreationDTO;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.BoxCreationDTO;
 import com.github.tumerbaatar.storage.service.BoxService;
 import org.springframework.web.bind.annotation.*;
 

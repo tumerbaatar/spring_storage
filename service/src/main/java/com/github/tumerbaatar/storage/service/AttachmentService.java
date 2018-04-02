@@ -1,9 +1,9 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
-import org.github.tumerbaatar.storage.model.Part;
-import org.github.tumerbaatar.storage.repository.PartRepository;
+import com.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

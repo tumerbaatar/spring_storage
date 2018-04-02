@@ -1,11 +1,11 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.model.Box;
-import org.github.tumerbaatar.storage.model.Part;
-import org.github.tumerbaatar.storage.repository.BoxRepository;
-import org.github.tumerbaatar.storage.repository.PartRepository;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.repository.BoxRepository;
+import com.github.tumerbaatar.storage.repository.PartRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

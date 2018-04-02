@@ -1,6 +1,6 @@
 package com.github.tumerbaatar.storage.repository;
 
-import org.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.Part;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

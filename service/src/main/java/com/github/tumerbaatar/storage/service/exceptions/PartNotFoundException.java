@@ -1,4 +1,4 @@
-package org.github.tumerbaatar.storage.service.exceptions;
+package com.github.tumerbaatar.storage.service.exceptions;
 
 public class PartNotFoundException extends RuntimeException {
     public PartNotFoundException() {

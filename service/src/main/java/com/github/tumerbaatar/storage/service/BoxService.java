@@ -1,15 +1,15 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.service.exceptions.BoxNotFoundException;
-import org.github.tumerbaatar.storage.service.exceptions.DuplicateBoxException;
-import org.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
-import org.github.tumerbaatar.storage.model.Box;
-import org.github.tumerbaatar.storage.model.BoxCreationDTO;
-import org.github.tumerbaatar.storage.model.Storage;
-import org.github.tumerbaatar.storage.repository.BoxRepository;
-import org.github.tumerbaatar.storage.repository.StorageRepository;
+import com.github.tumerbaatar.storage.service.exceptions.BoxNotFoundException;
+import com.github.tumerbaatar.storage.service.exceptions.DuplicateBoxException;
+import com.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.BoxCreationDTO;
+import com.github.tumerbaatar.storage.model.Storage;
+import com.github.tumerbaatar.storage.repository.BoxRepository;
+import com.github.tumerbaatar.storage.repository.StorageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

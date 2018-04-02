@@ -1,21 +1,21 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.service.exceptions.BoxNotFoundException;
-import org.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
-import org.github.tumerbaatar.storage.model.Box;
-import org.github.tumerbaatar.storage.model.Part;
-import org.github.tumerbaatar.storage.model.StockEntry;
-import org.github.tumerbaatar.storage.model.operation.AddStock;
-import org.github.tumerbaatar.storage.model.operation.MoveStock;
-import org.github.tumerbaatar.storage.model.operation.RemoveStock;
-import org.github.tumerbaatar.storage.repository.BoxRepository;
-import org.github.tumerbaatar.storage.repository.PartRepository;
-import org.github.tumerbaatar.storage.repository.StockEntryRepository;
-import org.github.tumerbaatar.storage.repository.operation.AddStockRepository;
-import org.github.tumerbaatar.storage.repository.operation.MoveStockRepository;
-import org.github.tumerbaatar.storage.repository.operation.RemoveStockRepository;
+import com.github.tumerbaatar.storage.service.exceptions.BoxNotFoundException;
+import com.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.StockEntry;
+import com.github.tumerbaatar.storage.model.operation.AddStock;
+import com.github.tumerbaatar.storage.model.operation.MoveStock;
+import com.github.tumerbaatar.storage.model.operation.RemoveStock;
+import com.github.tumerbaatar.storage.repository.BoxRepository;
+import com.github.tumerbaatar.storage.repository.PartRepository;
+import com.github.tumerbaatar.storage.repository.StockEntryRepository;
+import com.github.tumerbaatar.storage.repository.operation.AddStockRepository;
+import com.github.tumerbaatar.storage.repository.operation.MoveStockRepository;
+import com.github.tumerbaatar.storage.repository.operation.RemoveStockRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

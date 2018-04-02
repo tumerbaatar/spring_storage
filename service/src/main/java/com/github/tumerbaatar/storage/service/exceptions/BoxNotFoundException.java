@@ -1,4 +1,4 @@
-package org.github.tumerbaatar.storage.service.exceptions;
+package com.github.tumerbaatar.storage.service.exceptions;
 
 public class BoxNotFoundException extends RuntimeException {
     public BoxNotFoundException(String message) {

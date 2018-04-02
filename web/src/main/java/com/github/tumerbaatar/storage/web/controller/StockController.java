@@ -2,9 +2,9 @@ package com.github.tumerbaatar.storage.web.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.model.operation.AddStock;
-import org.github.tumerbaatar.storage.model.operation.MoveStock;
-import org.github.tumerbaatar.storage.model.operation.RemoveStock;
+import com.github.tumerbaatar.storage.model.operation.AddStock;
+import com.github.tumerbaatar.storage.model.operation.MoveStock;
+import com.github.tumerbaatar.storage.model.operation.RemoveStock;
 import com.github.tumerbaatar.storage.service.OperationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

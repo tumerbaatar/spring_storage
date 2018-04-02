@@ -1,17 +1,17 @@
-package org.github.tumerbaatar.storage.service;
+package com.github.tumerbaatar.storage.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RestHighLevelClient;
 
-import org.github.tumerbaatar.storage.service.exceptions.DuplicatePartException;
-import org.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
-import org.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
-import org.github.tumerbaatar.storage.model.Part;
-import org.github.tumerbaatar.storage.model.Storage;
-import org.github.tumerbaatar.storage.repository.PartRepository;
-import org.github.tumerbaatar.storage.repository.StorageRepository;
+import com.github.tumerbaatar.storage.service.exceptions.DuplicatePartException;
+import com.github.tumerbaatar.storage.service.exceptions.PartNotFoundException;
+import com.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.Storage;
+import com.github.tumerbaatar.storage.repository.PartRepository;
+import com.github.tumerbaatar.storage.repository.StorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;

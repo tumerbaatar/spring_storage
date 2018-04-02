@@ -2,7 +2,7 @@ package com.github.tumerbaatar.storage.web.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.Part;
 import com.github.tumerbaatar.storage.service.PartService;
 import com.github.tumerbaatar.storage.service.exceptions.DuplicatePartException;
 import org.springframework.web.bind.annotation.*;

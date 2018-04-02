@@ -2,8 +2,8 @@ package com.github.tumerbaatar.storage.web.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.github.tumerbaatar.storage.model.Storage;
-import org.github.tumerbaatar.storage.repository.StorageRepository;
+import com.github.tumerbaatar.storage.model.Storage;
+import com.github.tumerbaatar.storage.repository.StorageRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
