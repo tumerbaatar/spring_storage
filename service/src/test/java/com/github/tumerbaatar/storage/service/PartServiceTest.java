@@ -1,8 +1,8 @@
 package com.github.tumerbaatar.storage.service;
 
-import com.github.tumerbaatar.storage.persistence.model.Part;
-import com.github.tumerbaatar.storage.persistence.repository.BoxRepository;
-import com.github.tumerbaatar.storage.persistence.repository.PartRepository;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.repository.BoxRepository;
+import com.github.tumerbaatar.storage.repository.PartRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

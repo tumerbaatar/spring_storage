@@ -1,6 +1,7 @@
-package com.github.tumerbaatar.storage.persistence.repository;
+package com.github.tumerbaatar.storage.repository;
 
-import com.github.tumerbaatar.storage.persistence.model.Part;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
@@ -16,7 +17,7 @@ public class PartRepositoryTest {
     private PartRepository repository;
 
 //    @Test
-    public void creationTest() {
+    public void creationTest() throws Exception {
         String partNumber = "DC92302";
         Part cooler = new Part(partNumber);
 
@@ -25,7 +26,7 @@ public class PartRepositoryTest {
 
         entityManager.persist(cooler);
 
-        Part stored = repository.findByPermanentHash(permanentHash);
+        Part stored = repository.findByPermanentHash(permanentHash).orElseThrow(() ->new Exception("part not found"));
         assertEquals(cooler.getPermanentHash(), stored.getPermanentHash());
     }
 

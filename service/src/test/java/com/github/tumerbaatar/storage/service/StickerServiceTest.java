@@ -1,8 +1,8 @@
 package com.github.tumerbaatar.storage.service;
 
-import com.github.tumerbaatar.storage.persistence.model.Box;
-import com.github.tumerbaatar.storage.persistence.model.Part;
-import com.github.tumerbaatar.storage.persistence.model.StockEntry;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.StockEntry;
 import org.junit.Before;
 import org.junit.Test;
 

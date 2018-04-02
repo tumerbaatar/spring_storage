@@ -1,9 +1,9 @@
 package com.github.tumerbaatar.storage.service;
 
-import com.github.tumerbaatar.storage.persistence.model.Box;
-import com.github.tumerbaatar.storage.persistence.model.Part;
-import com.github.tumerbaatar.storage.persistence.repository.BoxRepository;
-import com.github.tumerbaatar.storage.persistence.repository.PartRepository;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.repository.BoxRepository;
+import com.github.tumerbaatar.storage.repository.PartRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +53,7 @@ public class PermanentHashProviderTest {
     @Test
     public void setPermanentHashForPart() {
         Part part = partList.get(0);
-        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(part);
+        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(java.util.Optional.ofNullable(part));
         part = hashProvider.setPermanentHash(part);
         assertNotNull(part.getPermanentHash());
     }
@@ -61,7 +61,7 @@ public class PermanentHashProviderTest {
     @Test
     public void setPermanentHashForBox() {
         Box box = boxList.get(0);
-        when(boxRepository.findByPermanentHash(box.getPermanentHash())).thenReturn(box);
+        when(boxRepository.findByPermanentHash(box.getPermanentHash())).thenReturn(java.util.Optional.ofNullable(box));
         box = hashProvider.setPermanentHash(box);
         assertNotNull(box.getPermanentHash());
     }
@@ -69,12 +69,12 @@ public class PermanentHashProviderTest {
     @Test
     public void setPermanentHashForPartWithCollision() {
         Part part = partList.get(0);
-        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(part);
+        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(java.util.Optional.ofNullable(part));
         part = hashProvider.setPermanentHash(part);
         String permanentHash = part.getPermanentHash();
         assertNotNull(part.getPermanentHash());
 
-        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(part);
+        when(partRepository.findByPermanentHash(part.getPermanentHash())).thenReturn(java.util.Optional.ofNullable(part));
         when(partRepository.findByPermanentHash(permanentHash+"0")).thenReturn(null);
         when(partRepository.findByPermanentHash(permanentHash+"01")).thenReturn(null);
         Part partWithCollision = hashProvider.setPermanentHash(part);

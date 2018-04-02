@@ -1,4 +1,4 @@
-package com.github.tumerbaatar.storage.persistence.model;
+package com.github.tumerbaatar.storage.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
-package com.github.tumerbaatar.storage.persistence.repository.operation;
+package com.github.tumerbaatar.storage.repository.operation;
 
-import com.github.tumerbaatar.storage.persistence.model.Box;
-import com.github.tumerbaatar.storage.persistence.model.Part;
-import com.github.tumerbaatar.storage.persistence.model.operation.RemoveStock;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.operation.RemoveStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
@@ -17,7 +17,7 @@ public class RemoveStockRepositoryTest {
     @Autowired
     private RemoveStockRepository removeStockRepository;
 
-//    @Test
+    //    @Test
     public void creationTest() throws Exception {
         String partNumber = "DC92302";
         Part part = new Part(partNumber);
@@ -36,7 +36,9 @@ public class RemoveStockRepositoryTest {
         removeStock.setQuantity(quantityToRemove);
 
         RemoveStock persistedRemoveStock = entityManager.persist(removeStock);
-        RemoveStock foundRemoveStock = removeStockRepository.findOne(persistedRemoveStock.getId());
+        RemoveStock foundRemoveStock = removeStockRepository
+                .findById(persistedRemoveStock.getId())
+                .orElseThrow(() -> new Exception("Remove stock entity not found"));
 
         assertEquals(persistedRemoveStock.getPart(), foundRemoveStock.getPart());
         assertEquals(part, persistedRemoveStock.getPart());

@@ -1,4 +1,4 @@
-package com.github.tumerbaatar.storage.storage;
+package com.github.tumerbaatar.storage.web.config;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
-package com.github.tumerbaatar.storage.persistence.repository.operation;
+package com.github.tumerbaatar.storage.repository.operation;
 
-import com.github.tumerbaatar.storage.persistence.model.Box;
-import com.github.tumerbaatar.storage.persistence.model.Part;
-import com.github.tumerbaatar.storage.persistence.model.operation.MoveStock;
+import com.github.tumerbaatar.storage.model.Box;
+import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.operation.MoveStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
