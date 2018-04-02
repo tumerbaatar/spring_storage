@@ -1,8 +1,6 @@
 package com.github.tumerbaatar.storage.web.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -23,13 +21,10 @@ public class WebConfig implements WebMvcConfigurer {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             resourceLocationPrefix = "file:///";
         }
-        System.out.println("++++++++++++++++");
-        System.out.println(resourceLocationPrefix);
-        System.out.println("++++++++++++++++");
 
         registry
-                .addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
+                .addResourceHandler("/static/**", "/media/**")
+                .addResourceLocations("classpath:/static/", resourceLocationPrefix+mediaFolder);
     }
 
     @Override
