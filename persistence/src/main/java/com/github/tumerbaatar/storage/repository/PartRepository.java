@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface PartRepository extends CrudRepository<Part, Long> {
-    Optional<Part> findById(long id);
 
     Optional<Part> findByPermanentHash(String permanentHash);
 

@@ -8,8 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface BoxRepository extends CrudRepository<Box, Long> {
-    Optional<Box> findById(long id);
-
     Optional<Box> findByPermanentHash(String boxHash);
 
     Optional<Box> findByName(String name);

@@ -1,0 +1,20 @@
+Проект складского учёта для ноутбучных запчастей.
+Обмен между фронтом и бэком происходит через Rest API.
+
+Backend:
+Java 8
+Spring Boot, 
+Spring Data JPA (Postgres), 
+Elasticsearch (подключен как бин Spring), 
+Spring MVC (для Rest)
+JUnit, Mockito
+
+Frontend:
+ECMA 6
+Create-react-app
+Semantic-ui-react -- библиотека готовых компонентов
+React
+Redux
+React Router v4
+Тестов нету(
+

@@ -1,0 +1,27 @@
+{
+  "name": "metaface",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.9",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.14",
+    "semantic-ui-react": "^0.78.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "copy": "powershell -Command \"(gc build/index.html) -replace '/static/css', '/css' | Out-File build/index.html\" && powershell -Command \"(gc build/index.html) -replace '/static/js', '/js' | Out-File build/index.html\" && xcopy /E /Y build ..\\..\\src\\main\\resources\\ && move ..\\..\\src\\main\\resources\\index.html ..\\..\\src\\main\\resources\\static\\index.html",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  }
+}
