@@ -39,7 +39,7 @@ const PartMenu = (props) => {
           <Menu.Item>
             <PartSearchContainer />
           </Menu.Item>
-          {/* <Menu.Item as={NavLink} name="createPart" to={urls.RELATIVE_CREATE_PART} onClick={(e, data) => { partCreationHandler(e, data) }}>Добавить запчасть</Menu.Item> */}
+          <Menu.Item as={NavLink} name="createPart" to={urls.RELATIVE_CREATE_PART} onClick={(e, data) => { partCreationHandler(e, data) }}>Добавить запчасть</Menu.Item>
           <Menu.Item
             as={Button}
             name="downloadPartsStickers"

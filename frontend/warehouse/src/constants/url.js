@@ -1,3 +1,4 @@
+export let CHECK
 
 export const serverName = 'http://localhost:8080'
 
@@ -67,4 +68,6 @@ export const changeStorageInUrls = (storage) => {
   console.log("*********************")
   console.log(PART_INDEX_PAGE, storage)
   console.log("*********************")
+
+  CHECK = `${storage}`
 }

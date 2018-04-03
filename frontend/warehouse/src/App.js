@@ -1,6 +1,6 @@
 import React from 'react'
 import TopBar from './components/TopBar'
-
+import { Loader } from 'semantic-ui-react'
 import { Route, Switch } from 'react-router-dom'
 import PartApp from './components/part/PartApp'
 import Redirect from 'react-router-dom/Redirect'
@@ -26,11 +26,8 @@ const App = ({ storageSlug, fetchStoragesInitially }) => {
   console.log("**********************")
 
   if (!storageSlug) {
-    return <div>there is no storage slug{storageSlug}</div>
+    return <Loader>Storages is not fetched yet</Loader>
   }
-  // else {
-    // return <div>{storageSlug}</div>
-  // }
 
   return (
     <div style={{ padding: "1em" }}>

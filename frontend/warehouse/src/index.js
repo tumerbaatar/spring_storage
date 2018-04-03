@@ -13,18 +13,20 @@ import { changeStorageInUrls } from './constants/url'
 
 export const store = createStore(partsApp, applyMiddleware(logger, thunkMiddleware))
 
-store.dispatch(fetchStorages())
+store.dispatch(fetchStorages()).then(
+    changeStorageInUrls(store.getState().storages.currentStorageSlug)
+)
 
-let currentStorageSlug = '' 
+let currentStorageSlug = ''
 store.subscribe(
     () => {
         let previousValue = currentStorageSlug
         currentStorageSlug = store.getState().storages.selectedStorageSlug
         if (previousValue !== currentStorageSlug) {
             Promise.resolve(store.dispatch(wipeBoxes()))
-                .then(() => {
-                    changeStorageInUrls(currentStorageSlug)
-                }).then(() => {
+                .then(
+                    Promise.resolve(changeStorageInUrls(currentStorageSlug))
+                ).then(() => {
                     store.dispatch(fetchBoxes())
                     store.dispatch(fetchParts())
                 })
