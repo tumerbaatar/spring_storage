@@ -32,13 +32,12 @@ class AddPart extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.handleSubmit(this.state)
+    this.props.handleSubmit(this.props.storageSlug, this.state)
   }
 
   render() {
     const { storageSlug, mode } = this.props.mode
-
-    if (mode.name === MODE_WATCH_PART) {
+    if (mode && mode.name === MODE_WATCH_PART) {
       return (<Redirect push to={`/storage/${storageSlug}/parts/` + mode.modePayload.permanentHash} />)
     }
 
@@ -55,7 +54,6 @@ class AddPart extends React.Component {
                   value={part.partNumber}
                   onChange={this.handleChange("partNumber")}
                 />
-
               </Form.Field>
               <Form.Field>
                 <label>Название</label>

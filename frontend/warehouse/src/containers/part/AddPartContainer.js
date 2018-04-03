@@ -10,6 +10,13 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+    console.log("---------------------")
+    console.log("---------------------")
+    console.log("---------------------")
+    console.log(ownProps.storageSlug)
+    console.log("---------------------")
+    console.log("---------------------")
+    console.log("---------------------")
     return {
         handleSubmit: (partCreationState) => {
             dispatch(postPart(partCreationState))

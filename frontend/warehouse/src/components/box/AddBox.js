@@ -374,7 +374,7 @@ class AddBox extends React.Component {
   render() {
     const { storageSlug, mode } = this.props.mode
 
-    if (mode.name === MODE_NEW_BOXES_HAVE_ADDED) {
+    if (mode && mode.name === MODE_NEW_BOXES_HAVE_ADDED) {
       return (<Redirect push to={`/storage/${storageSlug}/boxes`} />)
     }
 

@@ -25,7 +25,6 @@ const PartApp = () => (
         </Segment>
       </Grid.Column>
     </Grid.Row>
-
   </Grid>
 )
 

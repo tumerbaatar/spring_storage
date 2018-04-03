@@ -40,7 +40,12 @@ const PartMenu = (props) => {
           <Menu.Item>
             <PartSearchContainer />
           </Menu.Item>
-          <Menu.Item as={NavLink} name="createPart" to={`/storage/${storageSlug}/parts/add`} onClick={(e, data) => { partCreationHandler(e, data) }}>Добавить запчасть</Menu.Item>
+          <Menu.Item
+            as={NavLink}
+            name="createPart"
+            to={`/storage/${storageSlug}/parts/add`}
+            onClick={(e, data) => { partCreationHandler(e, data) }}
+          >Добавить запчасть</Menu.Item>
           <Menu.Item
             as={Button}
             name="downloadPartsStickers"
