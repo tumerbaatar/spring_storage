@@ -36,7 +36,7 @@ class AddPart extends React.Component {
   }
 
   render() {
-    const { storageSlug, mode } = this.props.mode
+    const { storageSlug, mode } = this.props
     if (mode && mode.name === MODE_WATCH_PART) {
       return (<Redirect push to={`/storage/${storageSlug}/parts/` + mode.modePayload.permanentHash} />)
     }

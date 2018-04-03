@@ -36,7 +36,7 @@ const PartMenu = (props) => {
   return (
     <Grid.Row>
       <Grid.Column>
-        <Menu stackable >
+        <Menu stackable>
           <Menu.Item>
             <PartSearchContainer />
           </Menu.Item>
@@ -52,7 +52,7 @@ const PartMenu = (props) => {
             onClick={() => { stickersDownloadHandler(selectedParts) }}
           >
             Скачать наклейки
-                </Menu.Item>
+          </Menu.Item>
         </Menu>
       </Grid.Column>
     </Grid.Row >

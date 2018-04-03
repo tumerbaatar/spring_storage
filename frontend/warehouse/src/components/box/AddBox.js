@@ -371,17 +371,21 @@ const GeneratedTable = (args) => {
 }
 
 class AddBox extends React.Component {
+  handleSubmit = (state) => {
+    this.props.handleSubmit(this.props.storageSlug, state)
+  }
+
   render() {
-    const { storageSlug, mode } = this.props.mode
+    const { storageSlug, mode } = this.props
 
     if (mode && mode.name === MODE_NEW_BOXES_HAVE_ADDED) {
       return (<Redirect push to={`/storage/${storageSlug}/boxes`} />)
     }
 
     const panes = [
-      { menuItem: 'Одна коробка', render: () => <Tab.Pane attached={false}><SingleBoxAddition handleSubmit={this.props.handleSubmit} /></Tab.Pane> },
-      { menuItem: 'Ряд', render: () => <Tab.Pane attached={false}><RowAddtion handleSubmit={this.props.handleSubmit} /></Tab.Pane> },
-      { menuItem: 'Сеть', render: () => <Tab.Pane attached={false}><GridAddition handleSubmit={this.props.handleSubmit} /></Tab.Pane> },
+      { menuItem: 'Одна коробка', render: () => <Tab.Pane attached={false}><SingleBoxAddition handleSubmit={this.handleSubmit} /></Tab.Pane> },
+      { menuItem: 'Ряд', render: () => <Tab.Pane attached={false}><RowAddtion handleSubmit={this.handleSubmit} /></Tab.Pane> },
+      { menuItem: 'Сеть', render: () => <Tab.Pane attached={false}><GridAddition handleSubmit={this.handleSubmit} /></Tab.Pane> },
       { menuItem: '3D-сеть', render: () => <Tab.Pane attached={false}>3D-сеть</Tab.Pane> },
     ]
     // return <Tab menu={{ pointing: true }} activeIndex={2} panes={panes} /> // set active tab

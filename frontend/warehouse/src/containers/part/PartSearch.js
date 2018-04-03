@@ -3,7 +3,7 @@ import { Search } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { searchPart } from '../../actions/acyncActionCreators'
 import { withRouter } from 'react-router-dom'
-import {server} from '../../index'
+import { server } from '../../index'
 
 const mapStateToProps = (state) => {
   let partSearchResults = state.parts.partSearchResults
@@ -24,8 +24,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    partSearchHandler: (value) => {
-      dispatch(searchPart(value))
+    partSearchHandler: (storageSlug, value) => {
+      dispatch(searchPart(storageSlug, value))
     },
   }
 }
@@ -51,9 +51,9 @@ class PartSearch extends React.Component {
   }
 
   handleSearchChange = (e, { value }) => {
-    const { partSearchHandler } = this.props
+    const { storageSlug, partSearchHandler } = this.props
     this.setState({ isSearching: true, value })
-    partSearchHandler(value)
+    partSearchHandler(storageSlug, value)
   }
 
   render() {
