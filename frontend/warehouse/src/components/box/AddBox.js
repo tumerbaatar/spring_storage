@@ -2,11 +2,10 @@ import React from 'react'
 import { Checkbox, Tab, Form, Radio, Divider, Table } from 'semantic-ui-react'
 import { MODE_NEW_BOXES_HAVE_ADDED } from '../../actions'
 import { Redirect } from 'react-router-dom'
-import { BOX_INDEX_PAGE} from '../../constants/url'
+import * as urls from '../../constants/url'
 
 const LETTERS = 'Буквы'
 const NUMBERS = 'Числа'
-
 
 class SingleBoxAddition extends React.Component {
   state = {
@@ -377,7 +376,7 @@ class AddBox extends React.Component {
     const mode = this.props.mode
 
     if (mode.name === MODE_NEW_BOXES_HAVE_ADDED) {
-      return (<Redirect push to={BOX_INDEX_PAGE} />)
+      return (<Redirect push to={urls.RELATIVE_BOX_INDEX_PAGE} />)
     }
 
     const panes = [

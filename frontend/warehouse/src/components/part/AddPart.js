@@ -33,7 +33,7 @@ class AddPart extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.handleSubmit(this.props.selectedStorageSlug, this.state)
+    this.props.handleSubmit(this.state)
   }
 
   render() {

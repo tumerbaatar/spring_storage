@@ -151,12 +151,15 @@ export function postPart(partCreationState) {
     ).then(
       response => response.json()
     ).then(json => {
+
+      /*
       if (json.indexOf("duplicated") >= 0) {
         console.error("------------------------------")
         console.error("Запчасть с таким парт-номером уже была добавлена на данный склад")
         console.error("------------------------------")
         throw new Error("It is duplicate")
       }
+      */
 
       dispatch(partHasFetched(json))
 

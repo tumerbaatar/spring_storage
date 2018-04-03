@@ -61,7 +61,7 @@ public class PartService {
 
     @Transactional
     public Part createPart(String storageSlug, Part part) throws IOException {
-        log.info("Part added " + part.toString());
+        log.info("Part to be added " + part.toString());
         if (partRepository.findPartByStorageSlugAndPartNumber(storageSlug, part.getPartNumber()).isPresent()) {
             throw new DuplicatePartException("Запчасть с данным парт-номером уже есть на этом складе");
         }
@@ -72,7 +72,7 @@ public class PartService {
         Part savedPart = partRepository.save(part);
         savedPart = hashProvider.setPermanentHash(savedPart);
 
-        if (savedPart.getImages() != null && savedPart.getImages().size() == 0) {
+        if (savedPart.getImages() != null || savedPart.getImages().size() == 0) {
             List<String> images = new ArrayList<>();
             images.add(partImagePlaceholder);
             savedPart.setImages(images);
@@ -119,12 +119,12 @@ public class PartService {
         }
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
+    @Transactional
     public Iterable<Part> findPartsByStorage(long storageId) {
         return partRepository.findAllByStorageId(storageId);
     }
 
-    @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
+    @Transactional
     public Iterable<Part> findPartsByStorage(String storageSlug) {
         return partRepository.findAllByStorageSlug(storageSlug);
     }
