@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { downloadPartsStickers } from '../../actions/acyncActionCreators'
 import { withRouter } from 'react-router-dom'
 import PartSearchContainer from './PartSearch'
-import { RELATIVE_CREATE_PART } from '../../constants/url';
+import * as urls from '../../constants/url';
 
 const mapStateToProps = (state) => {
   return {
@@ -39,7 +39,7 @@ const PartMenu = (props) => {
           <Menu.Item>
             <PartSearchContainer />
           </Menu.Item>
-          <Menu.Item as={NavLink} name="createPart" to={RELATIVE_CREATE_PART} onClick={(e, data) => { partCreationHandler(e, data) }}>Добавить запчасть</Menu.Item>
+          <Menu.Item as={NavLink} name="createPart" to={urls.RELATIVE_CREATE_PART} onClick={(e, data) => { partCreationHandler(e, data) }}>Добавить запчасть</Menu.Item>
           <Menu.Item
             as={Button}
             name="downloadPartsStickers"

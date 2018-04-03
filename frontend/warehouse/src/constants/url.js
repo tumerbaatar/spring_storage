@@ -5,8 +5,8 @@ export const SERVER_NAME = `${serverName}/`
 
 export const STORAGES = `${serverName}/storages`
 
-export const ADD_PART_WILDCARD = '/storage/:storageSlug/parts/add'
-export const ADD_BOX_WILDCARD = '/storage/:storageSlug/boxes/add'
+export const CREATE_PART_WILDCARD = '/storage/:storageSlug/parts/add'
+export const CREATE_BOX_WILDCARD = '/storage/:storageSlug/boxes/add'
 export const PART_PAGE_WILDCARD = '/storage/:storageSlug/parts/:partHash'
 export const PART_APP_WILDCARD = '/storage/:storageSlug/parts(/?)(.*)'
 export const BOX_APP_WILDCARD = '/storage/:storageSlug/boxes(/?)(.*)'

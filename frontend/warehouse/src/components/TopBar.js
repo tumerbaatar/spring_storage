@@ -41,13 +41,18 @@ const TopBar = (props) => {
                 options={storages}
                 onChange={(e, data) => {
                   selectStorage(data.value)
-                  props.history.push(urls.RELATIVE_PART_INDEX_PAGE)
+                  props.history.push("/storage/" + storageSlug + "/parts")
                 }}
               />
               {/* <Menu.Item as={NavLink} name="home" to={urls.RELATIVE_PART_INDEX_PAGE}>Запчасти</Menu.Item> */}
               {/* <Menu.Item as={NavLink} name="boxes" to={urls.RELATIVE_BOX_INDEX_PAGE}>Хранилища</Menu.Item> */}
-              <Menu.Item as={NavLink} name="home" to={"/storage/reset/parts"}>Запчасти</Menu.Item>
-              <Menu.Item as={NavLink} name="boxes" to={"/storage/reset/boxes"}>Хранилища</Menu.Item>
+
+              <Menu.Item as={NavLink} name="home" to={"/storage/" + storageSlug + "/parts"}>Запчасти</Menu.Item>
+              <Menu.Item as={NavLink} name="boxes" to={"/storage/" + storageSlug + "/boxes"}>Хранилища</Menu.Item>
+
+              {/* <Menu.Item as={NavLink} name="home" to={"/storage/reset/parts"}>Запчасти</Menu.Item> */}
+              {/* <Menu.Item as={NavLink} name="boxes" to={"/storage/reset/boxes"}>Хранилища</Menu.Item> */}
+ 
             </Container>
           </Menu>
         </Grid.Column>
