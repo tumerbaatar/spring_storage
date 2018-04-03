@@ -18,7 +18,7 @@ const PartInfo = (props) => {
   ]
 
   if (!props.part) {
-    props.fetchPartByHash(props.match.params.partHash)
+    props.fetchPartByHash(props.match.params.storageSlug, props.match.params.partHash)
     return <div>Part is null now</div>
   }
 

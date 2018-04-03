@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     partCreationHandler: (e, data) => { //todo 21/02/2018 поработать над более семантически правильным названием
       dispatch(modeAddNewPart())
     },
-    stickersDownloadHandler: (selectedPartsIds) => {
-      dispatch(downloadPartsStickers(selectedPartsIds))
+    stickersDownloadHandler: (storageSlug, selectedPartsIds) => {
+      dispatch(downloadPartsStickers(storageSlug, selectedPartsIds))
     },
   }
 }
@@ -49,7 +49,7 @@ const PartMenu = (props) => {
           <Menu.Item
             as={Button}
             name="downloadPartsStickers"
-            onClick={() => { stickersDownloadHandler(selectedParts) }}
+            onClick={() => { stickersDownloadHandler(storageSlug, selectedParts) }}
           >
             Скачать наклейки
           </Menu.Item>

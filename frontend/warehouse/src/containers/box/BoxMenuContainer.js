@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         modeAddNewBoxHandler: (e, data) => {
             dispatch(modeAddNewBox())
         },
-        downloadBoxStickersHandler: (selectedIds) => {
-            dispatch(downloadBoxesStickers(selectedIds))
+        downloadBoxStickersHandler: (storageSlug, selectedIds) => {
+            dispatch(downloadBoxesStickers(storageSlug, selectedIds))
         }
     }
 }
@@ -33,7 +33,7 @@ const BoxMenu = ({ storageSlug, selectedBoxes, modeAddNewBoxHandler, downloadBox
                 <Menu.Item
                     as={Button}
                     name="downloadBoxesStickers"
-                    onClick={() => { downloadBoxStickersHandler(selectedBoxes) }}
+                    onClick={() => { downloadBoxStickersHandler(storageSlug, selectedBoxes) }}
                 >
                     Скачать наклейки коробок
                 </Menu.Item>

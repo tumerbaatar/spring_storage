@@ -18,8 +18,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchPartByHash: (partHash) => {
-            dispatch(fetchPartByHash(partHash))
+        fetchPartByHash: (storageSlug, partHash) => {
+            dispatch(fetchPartByHash(storageSlug, partHash))
         },
         handleStockAdd: (stockAddState) => {
             dispatch(stockAdd(stockAddState))
