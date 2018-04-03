@@ -28,16 +28,16 @@ const App = ({ storageSlug, fetchStoragesInitially }) => {
   if (!storageSlug) {
     return <div>there is no storage slug{storageSlug}</div>
   }
-  else {
-    return <div>{storageSlug}</div>
-  }
+  // else {
+    // return <div>{storageSlug}</div>
+  // }
 
   return (
     <div style={{ padding: "1em" }}>
       <TopBar />
       <Switch>
         <Route path={url.PART_APP_WILDCARD} component={PartApp} />
-        <Route path={url.BOX_APP_WILDCARD} component={BoxApp} />
+        {/* <Route path={url.BOX_APP_WILDCARD} component={BoxApp} /> */}
         {
           // <Redirect exact from='/' to={url.PART_INDEX_PAGE} />
         }
