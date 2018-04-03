@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { downloadBoxesStickers } from '../../actions/acyncActionCreators'
 import { withRouter } from 'react-router-dom'
-import { BOX_ADD_PAGE } from '../../constants/url';
+import * as urls from '../../constants/url';
 
 const mapStateToProps = (state) => {
     return {
@@ -29,7 +29,7 @@ const BoxMenu = ({ selectedBoxes, modeAddNewBoxHandler, downloadBoxStickersHandl
         <Grid.Column>
             <Menu stackable >
                 <Menu.Item><Input icon='search' placeholder='Поиск коробки' /></Menu.Item>
-                <Menu.Item as={NavLink} name="addBox" to={BOX_ADD_PAGE} onClick={(e, data) => { modeAddNewBoxHandler(e, data) }}>Добавить коробку</Menu.Item>
+                <Menu.Item as={NavLink} name="addBox" to={urls.RELATIVE_CREATE_BOXES} onClick={(e, data) => { modeAddNewBoxHandler(e, data) }}>Добавить коробку</Menu.Item>
                 <Menu.Item
                     as={Button}
                     name="downloadBoxesStickers"

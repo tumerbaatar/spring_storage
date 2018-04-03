@@ -16,20 +16,20 @@ const mapStateToProps = (state) => {
   }
 }
 
-const App = ({ storageSlug }) => (
-  <div style={{ padding: "1em" }}>
-    <TopBar />
-    <Switch>
-      <Route path={url.PART_APP_WILDCARD} component={PartApp} />
-      <Route path={url.BOX_APP_WILDCARD} component={BoxApp} />
-      {
-        storageSlug ?
+const App = ({ storageSlug }) => {
+  return (
+    <div style={{ padding: "1em" }}>
+      <TopBar />
+      <Switch>
+        <Route path={url.PART_APP_WILDCARD} component={PartApp} />
+        <Route path={url.BOX_APP_WILDCARD} component={BoxApp} />
+        {
           <Redirect exact from='/' to={url.PART_INDEX_PAGE} />
-          : null
-      }
-    </Switch>
-  </div>
-)
+        }
+      </Switch>
+    </div>
+  )
+}
 
 const AppContainer = withRouter(connect(mapStateToProps)(App))
 

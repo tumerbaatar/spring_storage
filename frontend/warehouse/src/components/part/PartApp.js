@@ -14,7 +14,7 @@ const PartApp = () => (
     <Grid.Row>
       <Grid.Column computer={12}>
         <Switch>
-          <Route exact path={urls.ADD_PART_WILDCARD} component={AddPartContainer} />
+          <Route exact path={urls.RELATIVE_CREATE_PART } component={AddPartContainer} />
           <Route path={urls.PART_PAGE_WILDCARD} component={PartInfoContainer} />
           <Route exact path={urls.PART_INDEX_PAGE_WILDCARD} component={PartListContainer} />
         </Switch>

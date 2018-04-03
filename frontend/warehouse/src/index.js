@@ -15,7 +15,7 @@ export const store = createStore(partsApp, applyMiddleware(logger, thunkMiddlewa
 
 store.dispatch(fetchStorages())
 
-let currentStorageSlug = null
+let currentStorageSlug = '' 
 store.subscribe(
     () => {
         let previousValue = currentStorageSlug
@@ -24,7 +24,6 @@ store.subscribe(
             Promise.resolve(store.dispatch(wipeBoxes()))
                 .then(() => {
                     changeStorageInUrls(currentStorageSlug)
-                    setTimeout(() => (console.log("timeout")), 1000)
                 }).then(() => {
                     store.dispatch(fetchBoxes())
                     store.dispatch(fetchParts())
@@ -37,6 +36,7 @@ ReactDOM.render(
     <Root store={store} />,
     document.getElementById('root')
 )
+
 
 registerServiceWorker()
 

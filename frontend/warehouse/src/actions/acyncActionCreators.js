@@ -18,20 +18,10 @@ import {
   storagesHaveFetched,
   partSearchResultsFetched,
 } from './index'
-import *  as urls from '../constants/url'
-import { PART_INDEX_PAGE } from '../constants/url'
-
+import * as urls from '../constants/url'
 
 export function fetchStorages() {
   return dispatch => {
-    console.log("000000000000000000000000000000000")
-    console.log("000000000000000000000000000000000")
-    console.log("000000000000000000000000000000000")
-    console.log(urls.STORAGES)
-    console.log(PART_INDEX_PAGE)
-    console.log("000000000000000000000000000000000")
-    console.log("000000000000000000000000000000000")
-    console.log("000000000000000000000000000000000")
     return fetch(urls.STORAGES)
       .then(response => response.json())
       .then(json => {
@@ -77,7 +67,7 @@ export function fetchBoxes() {
 
 export function fetchPartByHash(partHash) {
   return dispatch => {
-    return fetch(urls.PART_PAGE_INCOMPLETE + partHash )
+    return fetch(urls.PART_PAGE_INCOMPLETE + partHash)
       .then(
         response => response.json()
       )

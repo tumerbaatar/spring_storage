@@ -15,9 +15,11 @@ export const BOX_INDEX_PAGE_WILDCARD = '/storage/:storageSlug/boxes'
 
 export let RELATIVE_PART_INDEX_PAGE
 export let RELATIVE_BOX_INDEX_PAGE
+export let RELATIVE_CREATE_PART
+export let RELATIVE_CREATE_BOXES
+
 export let PART_INDEX_PAGE
 export let BOX_INDEX_PAGE
-export let BOX_ADD_PAGE
 
 export let UPLOAD_IMAGES
 export let DOWNLOAD_PART_STICKERS
@@ -30,44 +32,39 @@ export let ADD_STOCK
 export let REMOVE_STOCK
 export let MOVE_STOCK
 
+export let RELATIVE_PART_PAGE_INCOMPLETE
 export let PART_PAGE_INCOMPLETE
+export let RELATIVE_SEARCH_QUERY_INCOMPLETE
 export let SEARCH_QUERY_INCOMPLETE
 
 export const changeStorageInUrls = (storage) => {
-  console.log("*********************")
-  console.log("*********************")
-  console.log("*********************")
-  console.log(storage)
-  console.log("*********************")
-  console.log("*********************")
-  console.log("*********************")
-
   RELATIVE_PART_INDEX_PAGE = `/storage/${storage}/parts`
-  RELATIVE_BOX_INDEX_PAGE = `/storage/${storage}/boxes`
   PART_INDEX_PAGE = `${serverName}${RELATIVE_PART_INDEX_PAGE}`
+
+  RELATIVE_BOX_INDEX_PAGE = `/storage/${storage}/boxes`
   BOX_INDEX_PAGE = `${serverName}${RELATIVE_BOX_INDEX_PAGE}`
 
-  BOX_ADD_PAGE = `${serverName}/storage/${storage}/boxes/add`
+  RELATIVE_CREATE_PART = `/storage/${storage}/parts/add`
+  CREATE_PART = `${serverName}${RELATIVE_CREATE_PART}`
+
+  RELATIVE_CREATE_BOXES = `/storage/${storage}/boxes/add`
+  CREATE_BOXES = `${serverName}${RELATIVE_CREATE_BOXES}`
 
   UPLOAD_IMAGES = `${serverName}/storage/images/parts/upload`
   DOWNLOAD_PART_STICKERS = `${serverName}/storage/${storage}/download/part_stickers`
   DOWNLOAD_BOX_STICKERS = `${serverName}/storage/${storage}/download/box_stickers`
 
-  CREATE_PART = `${serverName}/storage/${storage}/parts/add`
-  CREATE_BOXES = `${serverName}/storage/${storage}/boxes/add`
-
   ADD_STOCK = `${serverName}/stock/parts/add`
   REMOVE_STOCK = `${serverName}/stock/parts/remove`
   MOVE_STOCK = `${serverName}/stock/parts/move`
 
-  PART_PAGE_INCOMPLETE = `${serverName}/storage/${storage}/parts/`
-  SEARCH_QUERY_INCOMPLETE = `${serverName}/search?storage=${storage}&query=`
+  RELATIVE_PART_PAGE_INCOMPLETE = `/storage/${storage}/parts/`
+  PART_PAGE_INCOMPLETE = `${serverName}${RELATIVE_PART_PAGE_INCOMPLETE}`
+
+  RELATIVE_SEARCH_QUERY_INCOMPLETE = `/search?storage=${storage}&query=`
+  SEARCH_QUERY_INCOMPLETE = `${serverName}${RELATIVE_SEARCH_QUERY_INCOMPLETE}`
 
   console.log("*********************")
-  console.log("*********************")
-  console.log("*********************")
   console.log(PART_INDEX_PAGE, storage)
-  console.log("*********************")
-  console.log("*********************")
   console.log("*********************")
 }
