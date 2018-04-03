@@ -18,11 +18,11 @@ import {
   storagesHaveFetched,
   partSearchResultsFetched,
 } from './index'
-import * as urls from '../constants/url'
+import { server } from '../index'
 
 export function fetchStorages() {
   return dispatch => {
-    return fetch(urls.STORAGES)
+    return fetch(`${server}/storages`)
       .then(response => response.json())
       .then(json => {
         if (json.length !== 0) {
@@ -34,9 +34,9 @@ export function fetchStorages() {
   }
 }
 
-export function fetchParts() {
+export function fetchParts(storageSlug) {
   return dispatch => {
-    return fetch(urls.PART_INDEX_PAGE)
+    return fetch(`${server}/storage/${storageSlug}/parts`)
       .then(
         response => response.json()
       )
@@ -46,9 +46,9 @@ export function fetchParts() {
   }
 }
 
-export function fetchBoxes() {
+export function fetchBoxes(storageSlug) {
   return dispatch => {
-    return fetch(urls.BOX_INDEX_PAGE)
+    return fetch(`${server}/storage/${storageSlug}/boxes`)
       .then(
         response => response.json()
       )
@@ -65,9 +65,9 @@ export function fetchBoxes() {
   }
 }
 
-export function fetchPartByHash(partHash) {
+export function fetchPartByHash(storageSlug, partHash) {
   return dispatch => {
-    return fetch(urls.PART_PAGE_INCOMPLETE + partHash)
+    return fetch(`${server}/storage/${storageSlug}/parts/${partHash}`)
       .then(
         response => response.json()
       )
@@ -78,10 +78,10 @@ export function fetchPartByHash(partHash) {
   }
 }
 
-export function searchPart(query) {
+export function searchPart(storageSlug, query) {
   return dispatch => {
     dispatch(modePartsAreSearching())
-    return fetch(urls.SEARCH_QUERY_INCOMPLETE + query).then(
+    return fetch(`${server}/search?storage=${storageSlug}&query=${query}`).then(
       response => response.json()
     ).then(json => {
       dispatch(modePartsAreNotSearching())
@@ -90,10 +90,9 @@ export function searchPart(query) {
   }
 }
 
-export function downloadPartsStickers(itemIds) {
+export function downloadPartsStickers(storageSlug, itemIds) {
   return dispatch => {
-    console.log(itemIds)
-    return fetch(urls.DOWNLOAD_PART_STICKERS,
+    return fetch(`${server}/storage/${storageSlug}/download/part_stickers`,
       {
         headers: {
           'Accept': 'application/json',
@@ -114,9 +113,9 @@ export function downloadPartsStickers(itemIds) {
   }
 }
 
-export function downloadBoxesStickers(itemIds) {
+export function downloadBoxesStickers(storageSlug, itemIds) {
   return dispatch => {
-    return fetch(urls.DOWNLOAD_BOX_STICKERS,
+    return fetch(`${server}/storage/${storageSlug}/download/box_stickers`,
       {
         headers: {
           'Accept': 'application/json',
@@ -137,9 +136,9 @@ export function downloadBoxesStickers(itemIds) {
   }
 }
 
-export function postPart(partCreationState) {
+export function postPart(storageSlug, partCreationState) {
   return dispatch => {
-    return fetch(urls.CREATE_PART,
+    return fetch(`${server}/storage/${storageSlug}/parts/add`,
       {
         headers: {
           'Accept': 'application/json',
@@ -151,7 +150,6 @@ export function postPart(partCreationState) {
     ).then(
       response => response.json()
     ).then(json => {
-
       /*
       if (json.indexOf("duplicated") >= 0) {
         console.error("------------------------------")
@@ -160,9 +158,7 @@ export function postPart(partCreationState) {
         throw new Error("It is duplicate")
       }
       */
-
       dispatch(partHasFetched(json))
-
       switch (partCreationState.afterCreation) {
         case MODE_WATCH_PART:
           dispatch(modeWatchPart(json))
@@ -178,7 +174,6 @@ export function postPart(partCreationState) {
     /* 
     I can handle exceptions by that way when will implement partFetchError(error) handler. 
     But now it omits all the exceptional behavior in browser. Logs in console still present.
-
     .catch(
       error => {
         console.log("partFetch error")
@@ -189,9 +184,9 @@ export function postPart(partCreationState) {
   }
 }
 
-export function postBoxes(boxes) {
+export function postBoxes(storageSlug, boxes) {
   return dispatch => {
-    fetch(urls.CREATE_BOXES, {
+    fetch(`${server}/storage/${storageSlug}/boxes/add`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -209,7 +204,7 @@ export function postBoxes(boxes) {
 
 export function stockAdd(stockAddState) {
   return dispatch => {
-    fetch(urls.ADD_STOCK, {
+    fetch(`${server}/stock/add`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -229,7 +224,6 @@ export function stockAdd(stockAddState) {
     ).then(json => {
       const { part } = json
       const { box } = json
-
       dispatch(stockHasAdded(json))
       dispatch(boxHasFetched(box))
       dispatch(partHasFetched(part))
@@ -239,7 +233,7 @@ export function stockAdd(stockAddState) {
 
 export function stockRemove(stockRemoveState) {
   return dispatch => {
-    fetch(urls.REMOVE_STOCK, {
+    fetch(`${server}/stock/remove`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -269,7 +263,7 @@ export function stockRemove(stockRemoveState) {
 
 export function stockMove(stockMoveState) {
   return dispatch => {
-    fetch(urls.MOVE_STOCK, {
+    fetch(`${server}/stock/move`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -307,8 +301,7 @@ export function uploadImage(partId, images) {
       formData.append("files[]", images[i])
     }
     formData.append("part_id", partId)
-
-    fetch(urls.UPLOAD_IMAGES, {
+    fetch(`${server}/storage/images/parts/upload`, {
       method: 'POST',
       body: formData
     })

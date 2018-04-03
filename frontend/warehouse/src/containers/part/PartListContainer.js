@@ -5,6 +5,7 @@ import { uploadImage } from '../../actions/acyncActionCreators'
 
 const mapStateToProps = (state) => {
     return {
+        storageSlug: state.storages.selectedStorageSlug,
         parts: state.parts.partList,
         boxes: state.boxes.boxList,
     }

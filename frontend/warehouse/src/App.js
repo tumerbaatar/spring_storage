@@ -5,10 +5,8 @@ import { Route, Switch } from 'react-router-dom'
 import PartApp from './components/part/PartApp'
 import Redirect from 'react-router-dom/Redirect'
 import BoxApp from './components/box/BoxApp'
-import * as url from './constants/url'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchStorages } from './actions/acyncActionCreators';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,15 +14,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const App = ({ storageSlug, fetchStoragesInitially }) => {
-  console.log("**********************")
-  console.log("**********************")
-  console.log("**********************")
-  console.log(storageSlug)
-  console.log("**********************")
-  console.log("**********************")
-  console.log("**********************")
-
+const App = ({ storageSlug }) => {
   if (!storageSlug) {
     return <Loader>Storages is not fetched yet</Loader>
   }
@@ -33,10 +23,10 @@ const App = ({ storageSlug, fetchStoragesInitially }) => {
     <div style={{ padding: "1em" }}>
       <TopBar />
       <Switch>
-        <Route path={url.PART_APP_WILDCARD} component={PartApp} />
-        {/* <Route path={url.BOX_APP_WILDCARD} component={BoxApp} /> */}
+        <Route path={'/storage/:storageSlug/parts(/?)(.*)'} component={PartApp} />
+        <Route path={'/storage/:storageSlug/boxes(/?)(.*)'} component={BoxApp} />
         {
-          // <Redirect exact from='/' to={url.PART_INDEX_PAGE} />
+          <Redirect exact from='/' to={`/storage/${storageSlug}/parts`} />
         }
       </Switch>
     </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import { Checkbox, Tab, Form, Radio, Divider, Table } from 'semantic-ui-react'
 import { MODE_NEW_BOXES_HAVE_ADDED } from '../../actions'
 import { Redirect } from 'react-router-dom'
-import * as urls from '../../constants/url'
 
 const LETTERS = 'Буквы'
 const NUMBERS = 'Числа'
@@ -373,10 +372,10 @@ const GeneratedTable = (args) => {
 
 class AddBox extends React.Component {
   render() {
-    const mode = this.props.mode
+    const { storageSlug, mode } = this.props.mode
 
     if (mode.name === MODE_NEW_BOXES_HAVE_ADDED) {
-      return (<Redirect push to={urls.RELATIVE_BOX_INDEX_PAGE} />)
+      return (<Redirect push to={`/storage/${storageSlug}/boxes`} />)
     }
 
     const panes = [

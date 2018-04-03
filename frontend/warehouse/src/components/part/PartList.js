@@ -3,10 +3,17 @@ import { Table, Loader, Checkbox, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { defineBox } from '../../util/index'
 import Dropzone from 'react-dropzone'
-import * as urls from '../../constants/url';
+import { server } from '../../index'
 
 const PartList = (props) => {
-  const { parts, boxes, handleModeWatchPart, handleTogglePartCheckBox, handleImageUpload } = props
+  const {
+    storageSlug,
+    parts,
+    boxes,
+    handleModeWatchPart,
+    handleTogglePartCheckBox,
+    handleImageUpload
+  } = props
   if (!parts) {
     return <Loader active inline='centered' />
   }
@@ -37,14 +44,14 @@ const PartList = (props) => {
                   onDrop={(files) => handleImageUpload(p.id, files)}
                   style={{ position: "relative" }}
                 >
-                  <Image size="tiny" rounded src={urls.SERVER_NAME + p.images[0]} onClick={e => console.log(p.id, "image clicked")} />
+                  <Image size="tiny" rounded src={`${server}` + p.images[0]} onClick={e => console.log(p.id, "image clicked")} />
                 </Dropzone>
               </Table.Cell>
 
               <Table.Cell>{p.id}</Table.Cell>
               <Table.Cell>{p.name}</Table.Cell>
               <Table.Cell>
-                <Link to={urls.RELATIVE_PART_PAGE_INCOMPLETE + p.permanentHash} onClick={handleModeWatchPart(p)}>
+                <Link to={`/storage/${storageSlug}/parts/` + p.permanentHash} onClick={handleModeWatchPart(p)}>
                   {p.permanentHash}
                 </Link>
               </Table.Cell>

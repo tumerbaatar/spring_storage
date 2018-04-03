@@ -4,8 +4,8 @@ import { defineBox } from '../../util/index'
 import AddStockTab from './stock_operations/AddStockTab'
 import MoveStockTab from './stock_operations/MoveStockTab'
 import RemoveStockTab from './stock_operations/RemoveStockTab'
-import { SERVER_NAME } from '../../constants/url';
 import Dropzone from 'react-dropzone'
+import {server} from '../../index'
 
 
 const PartInfo = (props) => {
@@ -25,7 +25,6 @@ const PartInfo = (props) => {
   const part = props.parts.find(p => p.id === props.part.id)
 
   return (
-    // <Tab menu={{ color: 'red', fluid: true, vertical: true, tabular: 'right' }} panes={panes} activeIndex={2} />
     <Grid stackable>
       <Grid.Row>
         <Grid.Column computer={4}>
@@ -38,7 +37,7 @@ const PartInfo = (props) => {
             <Image
               size="tiny"
               floated="right"
-              src={SERVER_NAME + part.images[0]}
+              src={`${server}` + part.images[0]}
               onClick={e => console.log(part.id, "image clicked")}
             />
           </Dropzone>

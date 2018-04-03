@@ -5,7 +5,6 @@ import PartMenuContainer from '../../containers/part/PartMenuContainer'
 import AddPartContainer from '../../containers/part/AddPartContainer'
 import PartInfoContainer from '../../containers/part/PartInfoContainer'
 import PartListContainer from '../../containers/part/PartListContainer'
-import * as urls from '../../constants/url'
 
 const PartApp = () => (
   <Grid stackable>
@@ -14,9 +13,9 @@ const PartApp = () => (
     <Grid.Row>
       <Grid.Column computer={12}>
         <Switch>
-          <Route exact path={urls.RELATIVE_CREATE_PART} component={AddPartContainer} />
-          <Route path={urls.PART_PAGE_WILDCARD} component={PartInfoContainer} />
-          <Route exact path={urls.PART_INDEX_PAGE_WILDCARD} component={PartListContainer} />
+          <Route exact path={'/storage/:storageSlug/parts/add'} component={AddPartContainer} />
+          <Route path={'/storage/:storageSlug/parts/:partHash'} component={PartInfoContainer} />
+          <Route exact path={'/storage/:storageSlug/parts'} component={PartListContainer} />
         </Switch>
       </Grid.Column>
 

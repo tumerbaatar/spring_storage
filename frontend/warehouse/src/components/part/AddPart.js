@@ -2,7 +2,6 @@ import React from 'react'
 import { Segment, Form, Radio } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
 import { MODE_WATCH_PART, MODE_ADD_NEW_PART } from '../../actions/index'
-import { PART_PAGE_INCOMPLETE } from '../../constants/url';
 
 
 class AddPart extends React.Component {
@@ -37,10 +36,10 @@ class AddPart extends React.Component {
   }
 
   render() {
-    const mode = this.props.mode
+    const { storageSlug, mode } = this.props.mode
 
     if (mode.name === MODE_WATCH_PART) {
-      return (<Redirect push to={PART_PAGE_INCOMPLETE + mode.modePayload.permanentHash} />)
+      return (<Redirect push to={`/storage/${storageSlug}/parts/` + mode.modePayload.permanentHash} />)
     }
 
     const { part } = this.state
@@ -98,7 +97,7 @@ class AddPart extends React.Component {
                 control={Radio}
                 label='Перейти к созданной запчасти'
                 value={MODE_WATCH_PART}
-                checked={afterCreation === MODE_WATCH_PART }
+                checked={afterCreation === MODE_WATCH_PART}
                 onChange={this.handleChangeRadios}
               />
               <Form.Field

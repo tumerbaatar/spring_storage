@@ -11,6 +11,7 @@ import { wipeBoxes } from './actions/index'
 import registerServiceWorker from './registerServiceWorker'
 import { changeStorageInUrls } from './constants/url'
 
+export const server = 'http://localhost:8080'
 export const store = createStore(partsApp, applyMiddleware(logger, thunkMiddleware))
 
 store.dispatch(fetchStorages()).then(
@@ -27,8 +28,8 @@ store.subscribe(
                 .then(
                     Promise.resolve(changeStorageInUrls(currentStorageSlug))
                 ).then(() => {
-                    store.dispatch(fetchBoxes())
-                    store.dispatch(fetchParts())
+                    store.dispatch(fetchBoxes(currentStorageSlug))
+                    store.dispatch(fetchParts(currentStorageSlug))
                 })
         }
     }

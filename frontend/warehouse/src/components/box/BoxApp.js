@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import BoxMenuContainer from '../../containers/box/BoxMenuContainer'
 import AddBoxContainer from '../../containers/box/AddBoxContainer'
 import BoxListContainer from '../../containers/box/BoxListContainer'
-import * as urls from '../../constants/url'
 
 const BoxApp = () => (
   <Grid stackable>
@@ -12,8 +11,8 @@ const BoxApp = () => (
     <Grid.Row>
       <Grid.Column computer={12}>
         <Switch>
-          <Route exact path={urls.BOX_INDEX_PAGE_WILDCARD} component={BoxListContainer} />
-          <Route exact path={urls.CREATE_BOX_WILDCARD} component={AddBoxContainer} />
+          <Route exact path={'/storage/:storageSlug/boxes'} component={BoxListContainer} />
+          <Route exact path={'/storage/:storageSlug/boxes/add'} component={AddBoxContainer} />
           {/* TODO implement fetch box by hash and storage <Route path={'/:storageSlug/boxes/:partHash'} component={BoxInfoContainer} /> */}
         </Switch>
       </Grid.Column>

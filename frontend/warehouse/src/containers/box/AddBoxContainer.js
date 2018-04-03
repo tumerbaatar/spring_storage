@@ -5,6 +5,7 @@ import { postBoxes } from '../../actions/acyncActionCreators'
 const mapStateToProps = state => {
     return {
         mode: state.applicationMode,
+        storageSlug: state.storages.selectedStorageSlug,
     }
 }
 
