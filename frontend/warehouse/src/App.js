@@ -26,7 +26,7 @@ const App = ({ storageSlug }) => {
         <Route path={'/storage/:storageSlug/parts(/?)(.*)'} component={PartApp} />
         <Route path={'/storage/:storageSlug/boxes(/?)(.*)'} component={BoxApp} />
         {
-          <Redirect exact from='/' to={`/storage/${storageSlug}/parts`} />
+          <Redirect exact from='/storage' to={`/storage/${storageSlug}/parts`} />
         }
       </Switch>
     </div>
