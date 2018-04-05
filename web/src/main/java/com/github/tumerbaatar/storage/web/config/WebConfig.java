@@ -21,17 +21,18 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry
                 .addResourceHandler("/static/**", "/media/**")
-                .addResourceLocations("classpath:/static/", resourceLocationPrefix+mediaFolder);
+                .addResourceLocations("classpath:/static/", resourceLocationPrefix + mediaFolder);
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login").setViewName("login");
     }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("http://localhost:3000");
+        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
+                .allowedHeaders("*");
     }
 }
 

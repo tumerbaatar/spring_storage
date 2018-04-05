@@ -50,8 +50,8 @@ public class SearchController {
 
     @GetMapping(value = "/search")
     public List<Part> searchParts(@RequestParam("storage") String storage, @RequestParam("query") String query) throws IOException {
-        log.info("storage " + storage);
-        log.info("query " + query);
+        log.info("Search in storage: " + storage);
+        log.info("Search query: " + query);
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(
