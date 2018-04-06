@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -31,7 +32,15 @@ public class AttachmentService {
 
     @Transactional
     public Part saveImages(long partId, List<MultipartFile> images) {
-        Part part = partRepository.findById(partId).orElseThrow(PartNotFoundException::new);
+        Part part = partRepository
+                .findById(partId)
+                .orElseThrow(
+                        () -> new PartNotFoundException(
+                                new HashMap<String, Object>(){{
+                                    put("partId", partId);
+                                }}
+                        )
+                );
         List<String> imagePaths = part.getImages();
         imagePaths.remove(partImagePlaceholder);
         log.info("Found part with id = " + part.getId() + " and name " + part.getName());

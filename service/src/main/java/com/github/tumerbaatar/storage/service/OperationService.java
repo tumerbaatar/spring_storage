@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -44,7 +45,16 @@ public class OperationService {
     public AddStock addStock(AddStock addStockOperation) {
         log.info("Add stock operation requested: " + addStockOperation.toString());
 
-        Part part = partRepository.findById(addStockOperation.getPart().getId()).orElseThrow(PartNotFoundException::new);
+        long partId = addStockOperation.getPart().getId();
+        Part part = partRepository
+                .findById(partId)
+                .orElseThrow(
+                        () -> new PartNotFoundException(
+                                new HashMap<String, Object>() {{
+                                    put("partId", partId);
+                                }}
+                        )
+                );
         Box box = boxRepository.findById(addStockOperation.getBox().getId()).orElseThrow(BoxNotFoundException::new);
         int quantity = addStockOperation.getQuantity();
         BigDecimal price = addStockOperation.getPrice();
@@ -68,8 +78,15 @@ public class OperationService {
     @Transactional
     public MoveStock moveStock(MoveStock moveStock) {
         int quantityToMove = moveStock.getQuantity();
-        Part part = partRepository.findById(moveStock.getPart().getId()).orElseThrow(PartNotFoundException::new);
-        Box boxFrom =boxRepository.findById(moveStock.getBoxFrom().getId()).orElseThrow(BoxNotFoundException::new);
+        long partId = moveStock.getPart().getId();
+        Part part = partRepository
+                .findById(partId)
+                .orElseThrow(() -> new PartNotFoundException(
+                        new HashMap<String, Object>() {{
+                            put("partId", partId);
+                        }}
+                ));
+        Box boxFrom = boxRepository.findById(moveStock.getBoxFrom().getId()).orElseThrow(BoxNotFoundException::new);
         Box boxTo = boxRepository.findById(moveStock.getBoxTo().getId()).orElseThrow(BoxNotFoundException::new);
 
         part.getStockEntries()
@@ -92,7 +109,16 @@ public class OperationService {
 
     @Transactional
     public RemoveStock removeStock(RemoveStock stockRemove) {
-        Part part = partRepository.findById(stockRemove.getPart().getId()).orElseThrow(PartNotFoundException::new);
+        long partId = stockRemove.getPart().getId();
+        Part part = partRepository
+                .findById(partId)
+                .orElseThrow(
+                        () -> new PartNotFoundException(
+                                new HashMap<String, Object>() {{
+                                    put("partId", partId);
+                                }}
+                        )
+                );
         Box fromBox = boxRepository.findById(stockRemove.getFromBox().getId()).orElseThrow(BoxNotFoundException::new);
         int quantity = stockRemove.getQuantity();
 

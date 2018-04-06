@@ -9,7 +9,7 @@ class AddStockTab extends React.Component {
     const currentBox = initialBoxInStockEntries(props.part, props.boxes)
 
     this.state = {
-      assignedLocation: currentBox !== null ? currentBox.id : 0,
+      assignedLocation: currentBox ? currentBox.id : 0,
       part: props.part,
       box: currentBox,
       quantity: 1,

@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
     let part
     if (state.applicationMode.modePayload) {
         part = state.parts.partList.find(p => p.id === state.applicationMode.modePayload.id)
+        // part = state.applicationMode.modePayload
     } else {
         part = null
     }

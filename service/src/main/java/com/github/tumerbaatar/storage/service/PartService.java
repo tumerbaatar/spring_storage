@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -62,8 +63,15 @@ public class PartService {
     @Transactional
     public Part createPart(String storageSlug, Part part) throws IOException {
         log.info("Part to be added " + part.toString());
+
         if (partRepository.findPartByStorageSlugAndPartNumber(storageSlug, part.getPartNumber()).isPresent()) {
-            throw new DuplicatePartException("Запчасть с данным парт-номером уже есть на этом складе");
+            throw new DuplicatePartException(
+                    new HashMap<String, Object>() {{
+                        put("storageSlug", storageSlug);
+                        put("partNumber", part.getPartNumber());
+                    }},
+                    "Запчасть с данным парт-номером уже есть на этом складе"
+            );
         }
 
         Storage storage = storageRepository.findOneBySlug(storageSlug).orElseThrow(StorageNotFoundException::new);
@@ -102,12 +110,29 @@ public class PartService {
 
     @Transactional
     public Part findPart(long partId) {
-        return partRepository.findById(partId).orElseThrow(PartNotFoundException::new);
+        return partRepository
+                .findById(partId)
+                .orElseThrow(
+                        () -> new PartNotFoundException(
+                                new HashMap<String, Object>() {{
+                                    put("partId", partId);
+                                }}
+                        )
+                );
     }
 
     @Transactional
     public Part findPart(String storageSlug, String permanentHash) {
-        return partRepository.findOneByStorageSlugAndPermanentHash(storageSlug, permanentHash).orElseThrow(PartNotFoundException::new);
+        return partRepository
+                .findOneByStorageSlugAndPermanentHash(storageSlug, permanentHash)
+                .orElseThrow(
+                        () -> new PartNotFoundException(
+                                new HashMap<String, Object>() {{
+                                    put("storageSlug", storageSlug);
+                                    put("permanentHash", permanentHash);
+                                }}
+                        )
+                );
     }
 
     @Transactional

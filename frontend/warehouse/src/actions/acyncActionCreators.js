@@ -72,6 +72,7 @@ export function fetchPartByHash(storageSlug, partHash) {
         response => response.json()
       )
       .then(json => {
+        dispatch(partHasFetched(json))
         dispatch(modeWatchPart(json))
       }
       )
