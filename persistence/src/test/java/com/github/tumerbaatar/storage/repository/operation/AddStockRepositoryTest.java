@@ -2,6 +2,7 @@ package com.github.tumerbaatar.storage.repository.operation;
 
 import com.github.tumerbaatar.storage.model.Box;
 import com.github.tumerbaatar.storage.model.Part;
+import com.github.tumerbaatar.storage.model.Storage;
 import com.github.tumerbaatar.storage.model.operation.AddStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -34,7 +35,9 @@ public class AddStockRepositoryTest {
         BigDecimal price = new BigDecimal(10.01);
         String comment = "comment";
 
-        AddStock addStock = addStockRepository.save(new AddStock(part, box, quantityToAdd, price, comment));
+        Storage storage = new Storage("storageSlug", "storageName");
+
+        AddStock addStock = addStockRepository.save(new AddStock(storage, part, box, quantityToAdd, price, comment));
 
         assertNotEquals(0, addStock.getId());
         assertEquals(part, addStock.getPart());

@@ -51,7 +51,7 @@ const PartList = (props) => {
               <Table.Cell>{p.id}</Table.Cell>
               <Table.Cell>{p.name}</Table.Cell>
               <Table.Cell>
-                <Link to={`/storage/${storageSlug}/parts/` + p.permanentHash} onClick={handleModeWatchPart(p)}>
+                <Link to={`/storage/parts/` + p.permanentHash} onClick={handleModeWatchPart(p)}>
                   {p.permanentHash}
                 </Link>
               </Table.Cell>

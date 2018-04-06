@@ -1,5 +1,6 @@
 package com.github.tumerbaatar.storage.model.operation;
 
+import com.github.tumerbaatar.storage.model.Storage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.github.tumerbaatar.storage.model.Box;
@@ -30,15 +31,17 @@ public class AddStock {
     private int quantity;
     private BigDecimal price;
     private String comment;
-
     @CreationTimestamp
-
     private Timestamp timestamp;
+    @OneToOne
+    @JoinColumn(name = "storage_slug")
+    private Storage storage;
 
-    public AddStock(Part part, Box box, int quantityToMove, BigDecimal price, String comment) {
+    public AddStock(Storage storage, Part part, Box box, int quantityToAdd, BigDecimal price, String comment) {
+        this.storage = storage;
         this.part = part;
         this.box = box;
-        this.quantity = quantityToMove;
+        this.quantity = quantityToAdd;
         this.price = price;
         this.comment = comment;
     }

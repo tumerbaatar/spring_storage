@@ -3,7 +3,7 @@ import { Grid, Menu, Button } from 'semantic-ui-react'
 import { modeAddNewPart } from '../../actions/index'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { downloadPartsStickers } from '../../actions/acyncActionCreators'
+import { downloadPartStickers } from '../../actions/acyncActionCreators'
 import { withRouter } from 'react-router-dom'
 import PartSearchContainer from './PartSearch'
 
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(modeAddNewPart())
     },
     stickersDownloadHandler: (storageSlug, selectedPartsIds) => {
-      dispatch(downloadPartsStickers(storageSlug, selectedPartsIds))
+      dispatch(downloadPartStickers(storageSlug, selectedPartsIds))
     },
   }
 }
@@ -43,12 +43,12 @@ const PartMenu = (props) => {
           <Menu.Item
             as={NavLink}
             name="createPart"
-            to={`/storage/${storageSlug}/parts/add`}
+            to={`/storage/parts/create`}
             onClick={(e, data) => { partCreationHandler(e, data) }}
           >Добавить запчасть</Menu.Item>
           <Menu.Item
             as={Button}
-            name="downloadPartsStickers"
+            name="downloadPartStickers"
             onClick={() => { stickersDownloadHandler(storageSlug, selectedParts) }}
           >
             Скачать наклейки

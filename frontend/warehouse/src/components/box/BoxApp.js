@@ -11,8 +11,8 @@ const BoxApp = () => (
     <Grid.Row>
       <Grid.Column computer={12}>
         <Switch>
-          <Route exact path={'/storage/:storageSlug/boxes'} component={BoxListContainer} />
-          <Route exact path={'/storage/:storageSlug/boxes/add'} component={AddBoxContainer} />
+          <Route exact path={'/storage/boxes'} component={BoxListContainer} />
+          <Route exact path={'/storage/boxes/create'} component={AddBoxContainer} />
           {/* TODO implement fetch box by hash and storage <Route path={'/:storageSlug/boxes/:partHash'} component={BoxInfoContainer} /> */}
         </Switch>
       </Grid.Column>

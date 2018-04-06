@@ -32,13 +32,14 @@ class AddPart extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.handleSubmit(this.props.storageSlug, this.state)
+    this.setState({storage: this.props.storageSlug})
+    this.props.handleSubmit(this.state)
   }
 
   render() {
     const { storageSlug, mode } = this.props
     if (mode && mode.name === MODE_WATCH_PART) {
-      return (<Redirect push to={`/storage/${storageSlug}/parts/` + mode.modePayload.permanentHash} />)
+      return (<Redirect push to={`/storage/parts/` + mode.modePayload.permanentHash} />)
     }
 
     const { part } = this.state

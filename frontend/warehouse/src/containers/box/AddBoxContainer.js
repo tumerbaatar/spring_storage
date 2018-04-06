@@ -11,8 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        handleSubmit: (storageSlug, boxCreationState) => {
-            dispatch(postBoxes(storageSlug, boxCreationState))
+        handleSubmit: (boxCreationState) => {
+            dispatch(postBoxes(boxCreationState))
         }
     }
 }

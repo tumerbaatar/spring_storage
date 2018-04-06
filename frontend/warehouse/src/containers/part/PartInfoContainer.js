@@ -14,13 +14,14 @@ const mapStateToProps = (state) => {
         part: part,
         parts: state.parts.partList,
         boxes: state.boxes.boxList,
+        storageSlug: state.storages.selectedStorageSlug
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchPartByHash: (storageSlug, partHash) => {
-            dispatch(fetchPartByHash(storageSlug, partHash))
+        fetchPartByHash: (partHash) => {
+            dispatch(fetchPartByHash(partHash))
         },
         handleStockAdd: (stockAddState) => {
             dispatch(stockAdd(stockAddState))

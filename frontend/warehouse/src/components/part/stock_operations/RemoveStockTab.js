@@ -39,6 +39,9 @@ class RemoveStockTab extends React.Component {
   }
 
   handleSubmit = () => {
+    this.setState({
+      storage: this.props.storageSlug,
+    })
     this.props.handleStockRemove(this.state)
   }
 

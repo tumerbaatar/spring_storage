@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @NoArgsConstructor
-@RequestMapping("/storage")
+@RequestMapping("/storage/download")
 public class StickerController {
     private PartService partService;
     private BoxService boxService;
@@ -28,7 +28,7 @@ public class StickerController {
         this.boxService = boxService;
     }
 
-    @RequestMapping(path = "/download/part_stickers", method = RequestMethod.POST)
+    @RequestMapping(path = "/part_stickers", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Resource> downloadPartStickers(
             @RequestParam(value = "storage", required = false) String storageSlug,
@@ -48,7 +48,7 @@ public class StickerController {
                 .body(resource);
     }
 
-    @RequestMapping(path = "/download/box_stickers", method = RequestMethod.POST)
+    @RequestMapping(path = "/box_stickers", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Resource> downloadBoxStickers(
             @RequestParam(value = "storage", required = false) String storageSlug,

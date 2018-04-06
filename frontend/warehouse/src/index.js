@@ -15,6 +15,12 @@ export const store = createStore(partsApp, applyMiddleware(logger, thunkMiddlewa
 
 store.dispatch(fetchStorages())
 
+const initialItemsQuery = {
+    query: "",
+    page: 1,
+    resultsOnPage: 100
+}
+
 let currentStorageSlug = ''
 store.subscribe(
     () => {
@@ -23,8 +29,8 @@ store.subscribe(
         if (previousValue !== currentStorageSlug) {
             Promise.resolve(store.dispatch(wipeBoxes()))
                 .then(() => {
-                    store.dispatch(fetchBoxes(currentStorageSlug))
-                    store.dispatch(fetchParts(currentStorageSlug))
+                    store.dispatch(fetchBoxes({storageSlug: currentStorageSlug, ...initialItemsQuery}))
+                    store.dispatch(fetchParts({storageSlug: currentStorageSlug, ...initialItemsQuery}))
                 })
         }
     }

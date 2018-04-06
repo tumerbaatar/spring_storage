@@ -6,7 +6,6 @@ export function selectStorage(selectedSlug) {
     }
 }
 
-// fetchParts
 export const PARTS_HAVE_FETCHED = 'PARTS_HAVE_FETCHED'
 export function partsHaveFetched(parts) {
     return {
@@ -30,8 +29,6 @@ export function partsFetchError(error) {
     }
 }
 
-
-// fetchPartByHash
 export const PART_HAS_FETCHED = 'PART_HAS_FETCHED'
 export function partHasFetched(part) {
     return {
@@ -63,7 +60,6 @@ export function storagesHaveFetched(storages) {
     }
 }
 
-// fetchBoxByHash
 export const BOX_HAS_FETCHED = 'BOX_HAS_FETCHED'
 export function boxHasFetched(box) {
     return {
@@ -74,7 +70,6 @@ export function boxHasFetched(box) {
 export const BOX_IS_FETCHING = 'BOX_IS_FETCHING'
 export const BOX_FETCH_ERROR = 'BOX_FETCH_ERROR'
 
-// fetchBoxes and postBoxes callback the same
 export const BOXES_HAVE_FETCHED = 'BOXES_HAVE_FETCHED'
 export function boxesHaveFetched(boxes) {
     return {
@@ -132,7 +127,6 @@ export function modeWatchPart(part) {
     }
 }
 
-// stockAdd
 export const STOCK_HAS_ADDED = 'STOCK_HAS_ADDED'
 export function stockHasAdded(stockAddDTO) {
     return {

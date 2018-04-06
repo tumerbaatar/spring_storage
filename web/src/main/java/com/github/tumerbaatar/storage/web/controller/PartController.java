@@ -35,7 +35,7 @@ public class PartController {
 
         // TODO: 06.04.2018 implement search by query
 
-        return partService.findAll();
+        return partService.findPartsByStorage(storageSlug);
     }
 
     @GetMapping("/parts/{permanentHash}")

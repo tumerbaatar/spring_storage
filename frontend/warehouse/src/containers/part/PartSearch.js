@@ -25,7 +25,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     partSearchHandler: (storageSlug, value) => {
-      dispatch(searchPart(storageSlug, value))
+      dispatch(searchPart(
+        {
+          storage: storageSlug,
+          query: value,
+          page: 1,
+          resultsOnPage: 100
+        }
+      ))
     },
   }
 }

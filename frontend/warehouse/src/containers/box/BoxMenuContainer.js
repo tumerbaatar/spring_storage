@@ -3,7 +3,7 @@ import { Grid, Menu, Input, Button } from 'semantic-ui-react'
 import { modeAddNewBox } from '../../actions/index'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { downloadBoxesStickers } from '../../actions/acyncActionCreators'
+import { downloadBoxStickers } from '../../actions/acyncActionCreators'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(modeAddNewBox())
         },
         downloadBoxStickersHandler: (storageSlug, selectedIds) => {
-            dispatch(downloadBoxesStickers(storageSlug, selectedIds))
+            dispatch(downloadBoxStickers(storageSlug, selectedIds))
         }
     }
 }
@@ -29,10 +29,10 @@ const BoxMenu = ({ storageSlug, selectedBoxes, modeAddNewBoxHandler, downloadBox
         <Grid.Column>
             <Menu stackable >
                 <Menu.Item><Input icon='search' placeholder='Поиск коробки' /></Menu.Item>
-                <Menu.Item as={NavLink} name="addBox" to={`/storage/${storageSlug}/boxes/add`} onClick={(e, data) => { modeAddNewBoxHandler(e, data) }}>Добавить коробку</Menu.Item>
+                <Menu.Item as={NavLink} name="addBox" to={`/storage/boxes/create`} onClick={(e, data) => { modeAddNewBoxHandler(e, data) }}>Добавить коробку</Menu.Item>
                 <Menu.Item
                     as={Button}
-                    name="downloadBoxesStickers"
+                    name="downloadBoxStickers"
                     onClick={() => { downloadBoxStickersHandler(storageSlug, selectedBoxes) }}
                 >
                     Скачать наклейки коробок

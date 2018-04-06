@@ -1,18 +1,16 @@
 package com.github.tumerbaatar.storage.model;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Getter
-@Setter
 @Entity
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Storage {
     @Id
     private String slug;

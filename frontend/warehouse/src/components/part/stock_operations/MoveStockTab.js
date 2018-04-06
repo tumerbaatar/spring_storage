@@ -42,6 +42,9 @@ class MoveStockTab extends React.Component {
   }
 
   handleSubmit = () => {
+    this.setState({
+      storage: this.props.storageSlug
+    })
     this.props.handleStockMove(this.state)
   }
 

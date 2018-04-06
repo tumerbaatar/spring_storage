@@ -26,7 +26,7 @@ public class BoxController {
     ) {
         log.info("/boxes");
         // TODO: 06.04.2018 implement search
-        if (query == null) {
+        if (storageSlug != null && query == null || query.isEmpty()) {
             return boxService.findAllInStorage(storageSlug);
         } else {
             return new ArrayList<>();

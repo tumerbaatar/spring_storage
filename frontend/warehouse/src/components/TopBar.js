@@ -40,11 +40,11 @@ const TopBar = (props) => {
                 options={storages}
                 onChange={(e, data) => {
                   selectStorage(data.value)
-                  props.history.push(`/storage/${data.value}/parts`)
+                  props.history.push(`/storage/parts?storage=${data.value}`)
                 }}
               />
-              <Menu.Item as={NavLink} name="home" to={`/storage/${storageSlug}/parts`}>Запчасти</Menu.Item>
-              <Menu.Item as={NavLink} name="boxes" to={`/storage/${storageSlug}/boxes`}>Хранилища</Menu.Item>
+              <Menu.Item as={NavLink} name="home" to={`/storage/parts`}>Запчасти</Menu.Item>
+              <Menu.Item as={NavLink} name="boxes" to={`/storage/boxes`}>Хранилища</Menu.Item>
             </Container>
           </Menu>
         </Grid.Column>

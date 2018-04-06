@@ -1,5 +1,6 @@
 package com.github.tumerbaatar.storage.model.operation;
 
+import com.github.tumerbaatar.storage.model.Storage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.github.tumerbaatar.storage.model.Box;
@@ -14,7 +15,7 @@ import java.sql.Timestamp;
 @Immutable
 @NoArgsConstructor
 @Entity
-@Table(name="remove_stock")
+@Table(name = "remove_stock")
 public class RemoveStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,9 +27,7 @@ public class RemoveStock {
     @JoinColumn(name = "from_box_id")
     private Box fromBox;
     private int quantity;
-
     @CreationTimestamp
-
     private Timestamp creationTimestamp;
 
     public RemoveStock(Part part, Box fromBox, int quantityToRemove) {

@@ -3,6 +3,7 @@ package com.github.tumerbaatar.storage.service;
 import com.github.tumerbaatar.storage.model.Box;
 import com.github.tumerbaatar.storage.model.Part;
 import com.github.tumerbaatar.storage.model.StockEntry;
+import com.github.tumerbaatar.storage.model.Storage;
 import com.github.tumerbaatar.storage.model.operation.AddStock;
 import com.github.tumerbaatar.storage.model.operation.MoveStock;
 import com.github.tumerbaatar.storage.model.operation.RemoveStock;
@@ -48,6 +49,7 @@ public class OperationServiceTest {
     @InjectMocks
     private PartService partService;
 
+    private Storage storage;
     private Part part;
     private Box boxOne;
     private Box boxTwo;
@@ -59,6 +61,8 @@ public class OperationServiceTest {
     @Before
     public void beforeEach() {
         MockitoAnnotations.initMocks(this);
+
+        storage = new Storage("storageSlug", "storageName");
 
         String partNumber = "DC280009KS0";
         Long partId = 1001L;
@@ -113,7 +117,7 @@ public class OperationServiceTest {
             when(stockEntryRepository.save(entry)).thenReturn(entry);
         }
 
-        AddStock addStock = new AddStock(part, boxOne, QUANTITY, PRICE, COMMENT);
+        AddStock addStock = new AddStock(storage, part, boxOne, QUANTITY, PRICE, COMMENT);
 
         when(addStockRepository.save(addStock)).thenReturn(addStock);
         AddStock addStockAnswer = operationService.addStock(addStock);

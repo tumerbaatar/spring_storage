@@ -44,9 +44,9 @@ export function fetchStorages() {
   }
 }
 
-export function fetchParts(storage, query, page, resultsOnPage) {
+export function fetchParts({ storageSlug, query, page, resultsOnPage }) {
   return dispatch => {
-    return fetch(`${server}/storage/parts?storage=${storage}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
+    return fetch(`${server}/storage/parts?storage=${storageSlug}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -62,9 +62,10 @@ export function fetchParts(storage, query, page, resultsOnPage) {
   }
 }
 
-export function fetchBoxes(storageSlug, query, page, resultsOnPage) {
+export function fetchBoxes({ storageSlug, query, page, resultsOnPage }) {
   return dispatch => {
-    return fetch(`${server}/storage/boxes?storage=${storageSlug}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
+    return fetch(
+      `${server}/storage/boxes?storage=${storageSlug}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -107,10 +108,10 @@ export function fetchPartByHash(partHash) {
   }
 }
 
-export function searchPart(storageSlug, query) {
+export function searchPart({ storageSlug, query, page, resultsOnPage }) {
   return dispatch => {
     dispatch(modePartsAreSearching())
-    return fetch(`${server}/search?storage=${storageSlug}&query=${query}`,
+    return fetch(`${server}/search/parts?storage=${storageSlug}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -125,7 +126,7 @@ export function searchPart(storageSlug, query) {
   }
 }
 
-export function downloadPartsStickers(storageSlug, itemIds) {
+export function downloadPartStickers(storageSlug, itemIds) {
   return dispatch => {
     return fetch(`${server}/storage/download/part_stickers?storage=${storageSlug}`,
       {
@@ -149,7 +150,7 @@ export function downloadPartsStickers(storageSlug, itemIds) {
   }
 }
 
-export function downloadBoxesStickers(storageSlug, itemIds) {
+export function downloadBoxStickers(storageSlug, itemIds) {
   return dispatch => {
     return fetch(`${server}/storage/download/box_stickers?storage=${storageSlug}`,
       {
@@ -251,13 +252,15 @@ export function stockAdd(stockAddState) {
       },
       method: 'POST',
       body: JSON.stringify(
-        {
-          part: stockAddState.part,
-          box: stockAddState.box,
-          quantity: stockAddState.quantity,
-          price: stockAddState.price,
-          comment: stockAddState.comment
-        }
+        stockAddState
+        // {
+          // part: stockAddState.part,
+          // box: stockAddState.box,
+          // quantity: stockAddState.quantity,
+          // price: stockAddState.price,
+          // comment: stockAddState.comment,
+          // storage: stockAddState.storage
+        // }
       )
     }).then(
       response => response.json()
@@ -281,12 +284,14 @@ export function stockRemove(stockRemoveState) {
       },
       method: 'POST',
       body: JSON.stringify(
-        {
-          part: stockRemoveState.part,
-          fromBox: stockRemoveState.fromBox,
-          quantity: stockRemoveState.quantity,
-          comment: stockRemoveState.comment,
-        }
+        stockRemoveState
+        // {
+        //   part: stockRemoveState.part,
+        //   fromBox: stockRemoveState.fromBox,
+        //   quantity: stockRemoveState.quantity,
+        //   comment: stockRemoveState.comment,
+        //   storage: stockRemoveState.storage
+        // }
       )
     }).then(
       response => response.json()
@@ -312,13 +317,15 @@ export function stockMove(stockMoveState) {
       },
       method: 'POST',
       body: JSON.stringify(
-        {
-          part: stockMoveState.part,
-          boxFrom: stockMoveState.boxFrom,
-          boxTo: stockMoveState.boxTo,
-          quantity: stockMoveState.quantity,
-          comment: stockMoveState.comment,
-        }
+        stockMoveState
+        // {
+        //   part: stockMoveState.part,
+        //   boxFrom: stockMoveState.boxFrom,
+        //   boxTo: stockMoveState.boxTo,
+        //   quantity: stockMoveState.quantity,
+        //   comment: stockMoveState.comment,
+        //   storage: stockMoveState.storage
+        // }
       )
     }).then(
       response => response.json()

@@ -28,34 +28,17 @@ public class SearchController {
     private PartService partService;
     private RestHighLevelClient client;
 
-    /**
-     * Метод ищет запчасти в главном поле поиска запчастей.
-     * Данные хранятся в 2-х репозиториях: Spring Data JPA и Spring Data Elasticsearch.
-     * Чтобы иметь доступ к коллекциям внутри объекта запчасти я повторно запрашиваю запчасть из Spring Data JPA
-     * репозитория.
-     *
-     * @param query запрос для поиска запчастей в свободной форме
-     * @return list of parts from Spring Data JPA repository
-     */
     @GetMapping(value = "/search/parts")
-    public List<Part> searchByPartNumber(
+    public List<Part> searchParts(
             @RequestParam(value = "storage", required = false) String storageSlug,
             @RequestParam(value = "query", required = false) String query,
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "results_on_page", required = false, defaultValue = "10") int resultsOnPage
-    ) {
-        log.info("Query for search \"" + query + "\". Requested page = " + page + ". Requested results on page " + resultsOnPage);
-        List<Part> searchResults = new ArrayList<>();
-        return searchResults;
-    }
-
-    @GetMapping(value = "/search")
-    public List<Part> searchParts(
-            @RequestParam("storage") String storage,
-            @RequestParam("query") String query
     ) throws IOException {
-        log.info("Search in storage: " + storage);
+        log.info("Search in storage: " + storageSlug);
         log.info("Search query: " + query);
+        log.info("Search results page: " + page);
+        log.info("Search results on page: " + page);
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(
@@ -70,9 +53,10 @@ public class SearchController {
                         .prefixLength(2)
                         .maxExpansions(10)
                         .type(MultiMatchQueryBuilder.Type.BEST_FIELDS)
+
         );
 
-        SearchRequest searchRequest = new SearchRequest(storage);
+        SearchRequest searchRequest = new SearchRequest(storageSlug);
         searchRequest.types("part");
         searchRequest.searchType(SearchType.DFS_QUERY_THEN_FETCH);
         searchRequest.source(searchSourceBuilder);

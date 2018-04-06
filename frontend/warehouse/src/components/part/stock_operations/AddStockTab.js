@@ -14,7 +14,8 @@ class AddStockTab extends React.Component {
       box: currentBox,
       quantity: 1,
       price: 0,
-      comment: ''
+      comment: '',
+      storage: ''
     }
   }
 
@@ -48,6 +49,9 @@ class AddStockTab extends React.Component {
   }
 
   handleSubmit = () => {
+    this.setState({
+      storage: this.props.storageSlug
+    })
     this.props.handleStockAdd(this.state)
   }
 
@@ -120,6 +124,5 @@ class AddStockTab extends React.Component {
     )
   }
 }
-
 
 export default AddStockTab

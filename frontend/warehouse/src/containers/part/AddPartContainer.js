@@ -5,7 +5,7 @@ import { postPart } from '../../actions/acyncActionCreators';
 const mapStateToProps = state => {
     return {
         mode: state.applicationMode,
-        storage: state.storages.selectedStorage,
+        storageSlug: state.storages.selectedStorageSlug,
     }
 }
 

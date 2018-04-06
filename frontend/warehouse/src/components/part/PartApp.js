@@ -13,9 +13,9 @@ const PartApp = () => (
     <Grid.Row>
       <Grid.Column computer={12}>
         <Switch>
-          <Route exact path={'/storage/:storageSlug/parts/add'} component={AddPartContainer} />
-          <Route path={'/storage/:storageSlug/parts/:partHash'} component={PartInfoContainer} />
-          <Route exact path={'/storage/:storageSlug/parts'} component={PartListContainer} />
+          <Route exact path={'/storage/parts/create'} component={AddPartContainer} />
+          <Route path={'/storage/parts/:partHash'} component={PartInfoContainer} />
+          <Route exact path={'/storage/parts'} component={PartListContainer} />
         </Switch>
       </Grid.Column>
 

@@ -1,9 +1,9 @@
 package com.github.tumerbaatar.storage.model.operation;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import com.github.tumerbaatar.storage.model.Box;
 import com.github.tumerbaatar.storage.model.Part;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Immutable;
 
@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Immutable
 @Entity
-@Table(name="move_stock")
+@Table(name = "move_stock")
 public class MoveStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +29,7 @@ public class MoveStock {
     @JoinColumn(name = "to_box_id")
     private Box boxTo;
     private int quantity;
-
     @CreationTimestamp
-
     private Timestamp creationTimestamp;
 
     public MoveStock(Part part, Box boxFrom, Box boxTo, int quantityToMove) {
