@@ -20,23 +20,35 @@ import java.io.IOException;
 public class PartController {
     private PartService partService;
 
-    @GetMapping("/{storage}/parts")
-    public Iterable<Part> allParts(@PathVariable("storage") String storageSlug) {
-        log.info("All parts send");
-        return partService.findPartsByStorage(storageSlug);
+    @GetMapping("/parts")
+    public Iterable<Part> allParts(
+            @RequestParam(value = "storage", required = false) String storageSlug,
+            @RequestParam(value = "query", required = false) String query,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "results_on_page", required = false, defaultValue = "20") int resultsOnPage
+    ) {
+        // TODO: 06.04.2018 get user from headers
+        log.info("Search storage: ", storageSlug);
+        log.info("Search query: ", query );
+        log.info("Search page: ", page);
+        log.info("Search results on page: ", resultsOnPage);
+
+        // TODO: 06.04.2018 implement search by query
+
+        return partService.findAll();
     }
 
-    @GetMapping("/{storage}/parts/{permanentHash}")
-    public Part getPart(@PathVariable("storage") String storageSlug, @PathVariable("permanentHash") String permanentHash) {
+    @GetMapping("/parts/{permanentHash}")
+    public Part getPart(@PathVariable("permanentHash") String permanentHash) {
         log.info("Part requested with hash " + permanentHash);
-        Part part = partService.findPart(storageSlug, permanentHash);
+        Part part = partService.findPart(permanentHash);
         log.info(part.getId() + " " + part.getPermanentHash() + " " + part.getName() + " " + part.getPartNumber());
         return part;
     }
 
-    @PostMapping("/{storage}/parts/add")
-    public Part addPart(@PathVariable("storage") String storageSlug, @RequestBody Part part) throws IOException {
-        return partService.createPart(storageSlug, part);
+    @PostMapping("/parts/create")
+    public Part addPart(@RequestBody Part part) throws IOException {
+        return partService.createPart(part);
     }
 
     @ExceptionHandler(PartNotFoundException.class)

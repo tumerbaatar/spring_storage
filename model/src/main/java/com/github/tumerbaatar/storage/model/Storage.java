@@ -15,8 +15,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Storage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String name;
     private String slug;
+    private String name;
 }

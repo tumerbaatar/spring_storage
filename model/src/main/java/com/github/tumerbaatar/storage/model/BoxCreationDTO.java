@@ -13,5 +13,6 @@ import lombok.Setter;
 public class BoxCreationDTO {
     private String name;
     private boolean singlePartBox;
+    private String storageSlug;
 }
 

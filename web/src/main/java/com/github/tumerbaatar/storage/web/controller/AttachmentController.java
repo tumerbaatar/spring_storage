@@ -25,8 +25,11 @@ public class AttachmentController {
         this.attachmentService = attachmentService;
     }
 
-    @PostMapping("/images/parts/upload")
-    public Part handleFileUpload(@RequestParam("part_id") long partId, @RequestParam("files[]") List<MultipartFile> files) {
+    @PostMapping("/parts/images/upload")
+    public Part handleFileUpload(
+            @RequestParam("part_id") long partId,
+            @RequestParam("files[]") List<MultipartFile> files
+    ) {
         log.info("part id " + partId);
         return attachmentService.saveImages(partId, files);
     }

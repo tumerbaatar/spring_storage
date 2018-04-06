@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/stock")
+@RequestMapping("/storage/stock")
 public class StockController {
     private OperationService operationService;
 

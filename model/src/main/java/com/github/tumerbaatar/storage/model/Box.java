@@ -1,7 +1,11 @@
 package com.github.tumerbaatar.storage.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.github.tumerbaatar.storage.model.util.PersistedEntityIdResolver;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,20 +31,23 @@ public class Box {
     private long id;
     private String name;
     private String permanentHash;
-
     @JsonSerialize(using = StockEntriesSerializer.class)
     @OneToMany(mappedBy = "box", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StockEntry> stockEntries = new LinkedList<>();
-
     private boolean singlePartBox;
-
     @CreationTimestamp
     private Timestamp creationTimestamp;
     @UpdateTimestamp
     private Timestamp updateTimestamp;
-
     @ManyToOne
-    @JoinColumn(name="storage_id")
+    @JoinColumn(name = "storage_slug")
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "slug",
+            resolver = PersistedEntityIdResolver.class,
+            scope = Storage.class
+    )
+    @JsonIdentityReference(alwaysAsId = true)
     private Storage storage;
 
     public Box(String name) {

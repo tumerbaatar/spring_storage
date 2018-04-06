@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
@@ -61,20 +60,20 @@ public class PartService {
     }
 
     @Transactional
-    public Part createPart(String storageSlug, Part part) throws IOException {
+    public Part createPart(Part part) throws IOException {
         log.info("Part to be added " + part.toString());
 
-        if (partRepository.findPartByStorageSlugAndPartNumber(storageSlug, part.getPartNumber()).isPresent()) {
+        if (partRepository.findByPartNumber(part.getPartNumber()).isPresent()) {
             throw new DuplicatePartException(
                     new HashMap<String, Object>() {{
-                        put("storageSlug", storageSlug);
                         put("partNumber", part.getPartNumber());
                     }},
                     "Запчасть с данным парт-номером уже есть на этом складе"
             );
         }
 
-        Storage storage = storageRepository.findOneBySlug(storageSlug).orElseThrow(StorageNotFoundException::new);
+        String storageSlug = part.getStorage().getSlug();
+        Storage storage = storageRepository.findBySlug(storageSlug).orElseThrow(StorageNotFoundException::new);
         part.setStorage(storage);
 
         Part savedPart = partRepository.save(part);
@@ -122,13 +121,12 @@ public class PartService {
     }
 
     @Transactional
-    public Part findPart(String storageSlug, String permanentHash) {
+    public Part findPart(String permanentHash) {
         return partRepository
-                .findOneByStorageSlugAndPermanentHash(storageSlug, permanentHash)
+                .findByPermanentHash(permanentHash)
                 .orElseThrow(
                         () -> new PartNotFoundException(
                                 new HashMap<String, Object>() {{
-                                    put("storageSlug", storageSlug);
                                     put("permanentHash", permanentHash);
                                 }}
                         )
@@ -145,12 +143,12 @@ public class PartService {
     }
 
     @Transactional
-    public Iterable<Part> findPartsByStorage(long storageId) {
-        return partRepository.findAllByStorageId(storageId);
+    public Iterable<Part> findPartsByStorage(String storageSlug) {
+        return partRepository.findAllByStorageSlug(storageSlug);
     }
 
     @Transactional
-    public Iterable<Part> findPartsByStorage(String storageSlug) {
-        return partRepository.findAllByStorageSlug(storageSlug);
+    public Iterable<Part> findAll() {
+        return partRepository.findAll();
     }
 }

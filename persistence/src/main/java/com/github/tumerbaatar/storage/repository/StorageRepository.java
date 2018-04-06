@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface StorageRepository extends CrudRepository<Storage, Long> {
-    Optional<Storage> findOneBySlug(String storageSlug);
+    Optional<Storage> findBySlug(String storageSlug);
 }

@@ -39,9 +39,10 @@ public class SearchController {
      */
     @GetMapping(value = "/search/parts")
     public List<Part> searchByPartNumber(
-            @RequestParam("query") String query,
-            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-            @RequestParam(value = "results_on_page", required = false, defaultValue = "10") Integer resultsOnPage
+            @RequestParam(value = "storage", required = false) String storageSlug,
+            @RequestParam(value = "query", required = false) String query,
+            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(value = "results_on_page", required = false, defaultValue = "10") int resultsOnPage
     ) {
         log.info("Query for search \"" + query + "\". Requested page = " + page + ". Requested results on page " + resultsOnPage);
         List<Part> searchResults = new ArrayList<>();
@@ -49,7 +50,10 @@ public class SearchController {
     }
 
     @GetMapping(value = "/search")
-    public List<Part> searchParts(@RequestParam("storage") String storage, @RequestParam("query") String query) throws IOException {
+    public List<Part> searchParts(
+            @RequestParam("storage") String storage,
+            @RequestParam("query") String query
+    ) throws IOException {
         log.info("Search in storage: " + storage);
         log.info("Search query: " + query);
 

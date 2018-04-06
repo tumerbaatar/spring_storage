@@ -44,9 +44,9 @@ export function fetchStorages() {
   }
 }
 
-export function fetchParts(storageSlug) {
+export function fetchParts(storage, query, page, resultsOnPage) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/parts`,
+    return fetch(`${server}/storage/parts?storage=${storage}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -62,15 +62,14 @@ export function fetchParts(storageSlug) {
   }
 }
 
-export function fetchBoxes(storageSlug) {
+export function fetchBoxes(storageSlug, query, page, resultsOnPage) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/boxes`,
+    return fetch(`${server}/storage/boxes?storage=${storageSlug}&query=${query}&page=${page}&results_on_page=${resultsOnPage}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
         }
       }
-
     )
       .then(
         response => response.json()
@@ -88,9 +87,9 @@ export function fetchBoxes(storageSlug) {
   }
 }
 
-export function fetchPartByHash(storageSlug, partHash) {
+export function fetchPartByHash(partHash) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/parts/${partHash}`,
+    return fetch(`${server}/storage/parts/${partHash}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -128,7 +127,7 @@ export function searchPart(storageSlug, query) {
 
 export function downloadPartsStickers(storageSlug, itemIds) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/download/part_stickers`,
+    return fetch(`${server}/storage/download/part_stickers?storage=${storageSlug}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -152,7 +151,7 @@ export function downloadPartsStickers(storageSlug, itemIds) {
 
 export function downloadBoxesStickers(storageSlug, itemIds) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/download/box_stickers`,
+    return fetch(`${server}/storage/download/box_stickers?storage=${storageSlug}`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -174,9 +173,9 @@ export function downloadBoxesStickers(storageSlug, itemIds) {
   }
 }
 
-export function postPart(storageSlug, partCreationState) {
+export function postPart(partCreationState) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/parts/add`,
+    return fetch(`${server}/storage/parts/create`,
       {
         headers: {
           'Authorization': `Basic ${hash}`,
@@ -223,9 +222,9 @@ export function postPart(storageSlug, partCreationState) {
   }
 }
 
-export function postBoxes(storageSlug, boxes) {
+export function postBoxes(boxes) {
   return dispatch => {
-    fetch(`${server}/storage/${storageSlug}/boxes/add`, {
+    fetch(`${server}/storage/boxes/create`, {
       headers: {
         'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
@@ -244,7 +243,7 @@ export function postBoxes(storageSlug, boxes) {
 
 export function stockAdd(stockAddState) {
   return dispatch => {
-    fetch(`${server}/stock/add`, {
+    fetch(`${server}/storage/stock/add`, {
       headers: {
         'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
@@ -274,7 +273,7 @@ export function stockAdd(stockAddState) {
 
 export function stockRemove(stockRemoveState) {
   return dispatch => {
-    fetch(`${server}/stock/remove`, {
+    fetch(`${server}/storage/stock/remove`, {
       headers: {
         'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
@@ -305,7 +304,7 @@ export function stockRemove(stockRemoveState) {
 
 export function stockMove(stockMoveState) {
   return dispatch => {
-    fetch(`${server}/stock/move`, {
+    fetch(`${server}/storage/stock/move`, {
       headers: {
         'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
@@ -344,7 +343,7 @@ export function uploadImage(partId, images) {
       formData.append("files[]", images[i])
     }
     formData.append("part_id", partId)
-    fetch(`${server}/storage/images/parts/upload`, {
+    fetch(`${server}/storage/parts/images/upload`, {
       headers: {
         'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',

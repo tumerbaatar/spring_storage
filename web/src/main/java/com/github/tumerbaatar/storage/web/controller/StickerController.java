@@ -28,9 +28,12 @@ public class StickerController {
         this.boxService = boxService;
     }
 
-    @RequestMapping(path = "/{storage}/download/part_stickers", method = RequestMethod.POST)
+    @RequestMapping(path = "/download/part_stickers", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Resource> downloadPartStickers(@PathVariable("storage") String storageSlug, @RequestBody List<Long> partIds) {
+    public ResponseEntity<Resource> downloadPartStickers(
+            @RequestParam(value = "storage", required = false) String storageSlug,
+            @RequestBody List<Long> partIds
+    ) {
         log.info("Requested ids " + partIds);
         byte[] file = partService.stickerForIds(storageSlug, partIds);
         ByteArrayResource resource = new ByteArrayResource(file);
@@ -45,9 +48,12 @@ public class StickerController {
                 .body(resource);
     }
 
-    @RequestMapping(path = "/{storage}/download/box_stickers", method = RequestMethod.POST)
+    @RequestMapping(path = "/download/box_stickers", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Resource> downloadBoxStickers(@PathVariable("storage") String storageSlug, @RequestBody List<Long> boxIds) {
+    public ResponseEntity<Resource> downloadBoxStickers(
+            @RequestParam(value = "storage", required = false) String storageSlug,
+            @RequestBody List<Long> boxIds
+    ) {
         log.info("Requested ids " + boxIds);
         byte[] file = boxService.stickersForIds(storageSlug, boxIds);
         ByteArrayResource resource = new ByteArrayResource(file);

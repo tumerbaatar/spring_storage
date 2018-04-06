@@ -1,10 +1,10 @@
 package com.github.tumerbaatar.storage.service;
 
+import com.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.github.tumerbaatar.storage.service.exceptions.BoxNotFoundException;
 import com.github.tumerbaatar.storage.service.exceptions.DuplicateBoxException;
-import com.github.tumerbaatar.storage.service.exceptions.StorageNotFoundException;
 import com.github.tumerbaatar.storage.model.Box;
 import com.github.tumerbaatar.storage.model.BoxCreationDTO;
 import com.github.tumerbaatar.storage.model.Storage;
@@ -26,14 +26,14 @@ public class BoxService {
     private StickerService stickerService;
 
     @Transactional
-    public Iterable<Box> addBoxes(String storageSlug, List<BoxCreationDTO> creationDTOS) {
-        Storage storage = storageRepository.findOneBySlug(storageSlug).orElseThrow(StorageNotFoundException::new);
-
+    public Iterable<Box> addBoxes(List<BoxCreationDTO> creationDTOS) {
         List<Box> boxesToSave = new ArrayList<>();
         for (BoxCreationDTO jsonBox : creationDTOS) {
-            if (boxRepository.findByStorageSlugAndPermanentHash(storageSlug, jsonBox.getName()).isPresent()) {
+            Storage storage = storageRepository.findBySlug(jsonBox.getStorageSlug()).orElseThrow(StorageNotFoundException::new);
+            if (boxRepository.findByStorageSlugAndName(storage.getSlug(), jsonBox.getName()).isPresent()) {
                 throw new DuplicateBoxException("Box with name " + jsonBox.getName() + " is already present in database");
             }
+
             Box box = new Box(jsonBox.getName());
             box.setStorage(storage);
             box.setSinglePartBox(jsonBox.isSinglePartBox());
@@ -44,8 +44,8 @@ public class BoxService {
     }
 
     @Transactional
-    public Box findByStorageAndPermanentHash(String storageSlug, String permanentHash) {
-        return boxRepository.findByStorageSlugAndPermanentHash(storageSlug, permanentHash).orElseThrow(BoxNotFoundException::new);
+    public Box findByPermanentHash(String permanentHash) {
+        return boxRepository.findByPermanentHash(permanentHash).orElseThrow(BoxNotFoundException::new);
     }
 
     @Transactional

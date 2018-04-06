@@ -9,7 +9,8 @@ const NUMBERS = 'Числа'
 class SingleBoxAddition extends React.Component {
   state = {
     name: '',
-    singlePartBox: false
+    singlePartBox: false,
+    storageSlug: this.props.storageSlug,
   }
 
   handleChange = (name) => {
@@ -94,7 +95,8 @@ class RowAddtion extends React.Component {
     generateSequence(upperBound).forEach(
       symbol => row.push({
         name: this.state.rowPrefix + "-" + symbol,
-        holdsSingleItemOnly: this.state.holdsSingleItemOnly
+        holdsSingleItemOnly: this.state.holdsSingleItemOnly,
+        storageSlug: this.props.storageSlug
       })
     )
     return row
@@ -212,7 +214,8 @@ class GridAddition extends React.Component {
       columns.forEach(c =>
         cells.push({
           name: this.state.gridPrefix + r + this.state.divider + c,
-          holdsSingleItemOnly: this.state.holdsSingleItemOnly
+          holdsSingleItemOnly: this.state.holdsSingleItemOnly,
+          storageSlug: this.props.storageSlug
         })
       )
     )
@@ -383,10 +386,28 @@ class AddBox extends React.Component {
     }
 
     const panes = [
-      { menuItem: 'Одна коробка', render: () => <Tab.Pane attached={false}><SingleBoxAddition handleSubmit={this.handleSubmit} /></Tab.Pane> },
-      { menuItem: 'Ряд', render: () => <Tab.Pane attached={false}><RowAddtion handleSubmit={this.handleSubmit} /></Tab.Pane> },
-      { menuItem: 'Сеть', render: () => <Tab.Pane attached={false}><GridAddition handleSubmit={this.handleSubmit} /></Tab.Pane> },
-      { menuItem: '3D-сеть', render: () => <Tab.Pane attached={false}>3D-сеть</Tab.Pane> },
+      {
+        menuItem: 'Одна коробка',
+        render: () =>
+          <Tab.Pane attached={false}>
+            <SingleBoxAddition storageSlug={this.props.storageSlug} handleSubmit={this.handleSubmit} />
+          </Tab.Pane>
+      },
+      {
+        menuItem: 'Ряд',
+        render: () =>
+          <Tab.Pane attached={false}>
+            <RowAddtion storageSlug={this.props.storageSlug} handleSubmit={this.handleSubmit} />
+          </Tab.Pane>
+      },
+      {
+        menuItem: 'Сеть',
+        render: () =>
+          <Tab.Pane attached={false}>
+            <GridAddition storageSlug={this.props.storageSlug} handleSubmit={this.handleSubmit} />
+          </Tab.Pane>
+      },
+
     ]
     // return <Tab menu={{ pointing: true }} activeIndex={2} panes={panes} /> // set active tab
     return <Tab menu={{ pointing: true }} panes={panes} />

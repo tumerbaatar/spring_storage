@@ -15,5 +15,7 @@ public interface BoxRepository extends CrudRepository<Box, Long> {
     Iterable<Box> findAllByStorageSlug(String storageSlug);
 
     Optional<Box> findByStorageSlugAndPermanentHash(String storageSlug, String permanentHash);
+
+    Optional<Box> findByStorageSlugAndName(String slug, String name);
 }
 

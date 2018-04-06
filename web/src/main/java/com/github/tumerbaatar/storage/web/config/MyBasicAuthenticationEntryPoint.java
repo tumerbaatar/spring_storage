@@ -24,7 +24,7 @@ public class MyBasicAuthenticationEntryPoint extends BasicAuthenticationEntryPoi
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        setRealmName("saul");
+        setRealmName("warehouse");
         super.afterPropertiesSet();
     }
 }

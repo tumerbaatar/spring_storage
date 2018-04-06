@@ -5,14 +5,14 @@ import { postPart } from '../../actions/acyncActionCreators';
 const mapStateToProps = state => {
     return {
         mode: state.applicationMode,
-        storageSlug: state.storages.selectedStorageSlug,
+        storage: state.storages.selectedStorage,
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        handleSubmit: (storage, partCreationState) => {
-            dispatch(postPart(storage, partCreationState))
+        handleSubmit: (partCreationState) => {
+            dispatch(postPart(partCreationState))
         }
     }
 }

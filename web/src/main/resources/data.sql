@@ -1,7 +1,7 @@
-INSERT INTO storage (id, name, slug) VALUES (501, 'Reset', 'reset');
-INSERT INTO storage (id, name, slug) VALUES (502, 'Garant', 'garant');
+INSERT INTO storage (name, slug) VALUES ('Reset', 'reset');
+INSERT INTO storage (name, slug) VALUES ('Garant', 'garant');
 
-INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_id)
+INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_slug)
 VALUES (
   1001,
   'pn23093022309',
@@ -13,10 +13,10 @@ VALUES (
   100.01,
   '2018-02-28 16:15:22.291001',
   '2018-02-28 16:16:22.291002',
-  501
+  'reset'
 );
 
-INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_id)
+INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_slug)
 VALUES (
   1002,
   'pn39223093022',
@@ -28,10 +28,10 @@ VALUES (
   900.01,
   '2018-02-28 16:17:22.291003',
   '2018-02-28 16:19:22.291004',
-  501
+  'reset'
 );
 
-INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_id)
+INSERT INTO part (id, part_number, permanent_hash, name, description, manufacturer, manufacturer_part_number, price, creation_timestamp, update_timestamp, storage_slug)
 VALUES (
   1003,
   'pn 777',
@@ -43,35 +43,35 @@ VALUES (
   900.01,
   '2018-02-28 16:20:22.291005',
   '2018-02-28 16:21:22.291006',
-  502
+  'garant'
 );
 
-INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_id) VALUES (
+INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_slug) VALUES (
   2001, 'testBox-a', 'testBox1', FALSE,
   '2018-02-28 16:22:22.291006',
   '2018-02-28 16:23:22.291007',
-  501
+  'reset'
 );
 
-INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_id) VALUES (
+INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_slug) VALUES (
   2002, 'testBox-b', 'testBox2', FALSE,
   '2018-02-28 16:24:22.291008',
   '2018-02-28 16:25:22.291009',
-  501
+  'reset'
 );
 
-INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_id) VALUES (
+INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_slug) VALUES (
   2003, 'testBox-c', 'testBox3', FALSE,
   '2018-02-28 16:26:22.291010',
   '2018-02-28 16:27:22.291011',
-  501
+  'reset'
 );
 
-INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_id) VALUES (
+INSERT INTO box (id, name, permanent_hash, single_part_box, creation_timestamp, update_timestamp, storage_slug) VALUES (
   2004, 'garantTestBox', 'garantTestBox', FALSE,
   '2018-02-28 16:26:22.291010',
   '2018-02-28 16:27:22.291011',
-  502
+  'garant'
 );
 
 -- set images to dummy parts
