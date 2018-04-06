@@ -20,9 +20,19 @@ import {
 } from './index'
 import { server } from '../index'
 
+const username = "user"
+const password = "user"
+const hash = new Buffer(`${username}:${password}`).toString('base64')
+
 export function fetchStorages() {
   return dispatch => {
-    return fetch(`${server}/storages`)
+    return fetch(
+      `${server}/storages`,
+      {
+        headers: {
+          'Authorization': `Basic ${hash}`,
+        }
+      })
       .then(response => response.json())
       .then(json => {
         if (json.length !== 0) {
@@ -36,7 +46,13 @@ export function fetchStorages() {
 
 export function fetchParts(storageSlug) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/parts`)
+    return fetch(`${server}/storage/${storageSlug}/parts`,
+      {
+        headers: {
+          'Authorization': `Basic ${hash}`,
+        }
+      }
+    )
       .then(
         response => response.json()
       )
@@ -48,7 +64,14 @@ export function fetchParts(storageSlug) {
 
 export function fetchBoxes(storageSlug) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/boxes`)
+    return fetch(`${server}/storage/${storageSlug}/boxes`,
+      {
+        headers: {
+          'Authorization': `Basic ${hash}`,
+        }
+      }
+
+    )
       .then(
         response => response.json()
       )
@@ -67,7 +90,13 @@ export function fetchBoxes(storageSlug) {
 
 export function fetchPartByHash(storageSlug, partHash) {
   return dispatch => {
-    return fetch(`${server}/storage/${storageSlug}/parts/${partHash}`)
+    return fetch(`${server}/storage/${storageSlug}/parts/${partHash}`,
+      {
+        headers: {
+          'Authorization': `Basic ${hash}`,
+        }
+      }
+    )
       .then(
         response => response.json()
       )
@@ -82,7 +111,13 @@ export function fetchPartByHash(storageSlug, partHash) {
 export function searchPart(storageSlug, query) {
   return dispatch => {
     dispatch(modePartsAreSearching())
-    return fetch(`${server}/search?storage=${storageSlug}&query=${query}`).then(
+    return fetch(`${server}/search?storage=${storageSlug}&query=${query}`,
+      {
+        headers: {
+          'Authorization': `Basic ${hash}`,
+        }
+      }
+    ).then(
       response => response.json()
     ).then(json => {
       dispatch(modePartsAreNotSearching())
@@ -96,6 +131,7 @@ export function downloadPartsStickers(storageSlug, itemIds) {
     return fetch(`${server}/storage/${storageSlug}/download/part_stickers`,
       {
         headers: {
+          'Authorization': `Basic ${hash}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
@@ -119,6 +155,7 @@ export function downloadBoxesStickers(storageSlug, itemIds) {
     return fetch(`${server}/storage/${storageSlug}/download/box_stickers`,
       {
         headers: {
+          'Authorization': `Basic ${hash}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
@@ -142,6 +179,7 @@ export function postPart(storageSlug, partCreationState) {
     return fetch(`${server}/storage/${storageSlug}/parts/add`,
       {
         headers: {
+          'Authorization': `Basic ${hash}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
@@ -189,6 +227,7 @@ export function postBoxes(storageSlug, boxes) {
   return dispatch => {
     fetch(`${server}/storage/${storageSlug}/boxes/add`, {
       headers: {
+        'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -207,6 +246,7 @@ export function stockAdd(stockAddState) {
   return dispatch => {
     fetch(`${server}/stock/add`, {
       headers: {
+        'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -236,6 +276,7 @@ export function stockRemove(stockRemoveState) {
   return dispatch => {
     fetch(`${server}/stock/remove`, {
       headers: {
+        'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -266,6 +307,7 @@ export function stockMove(stockMoveState) {
   return dispatch => {
     fetch(`${server}/stock/move`, {
       headers: {
+        'Authorization': `Basic ${hash}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -303,6 +345,11 @@ export function uploadImage(partId, images) {
     }
     formData.append("part_id", partId)
     fetch(`${server}/storage/images/parts/upload`, {
+      headers: {
+        'Authorization': `Basic ${hash}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: formData
     })
