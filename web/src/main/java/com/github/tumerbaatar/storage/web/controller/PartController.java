@@ -48,6 +48,7 @@ public class PartController {
 
     @PostMapping("/parts/create")
     public Part addPart(@RequestBody Part part) throws IOException {
+        log.info("Part creation acquired " + part);
         return partService.createPart(part);
     }
 

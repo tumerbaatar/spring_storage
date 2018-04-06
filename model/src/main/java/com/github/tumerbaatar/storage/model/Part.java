@@ -25,7 +25,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(value = {"stockEntries"}, allowGetters = true)
+@JsonIgnoreProperties(value = {"stockEntries"}, allowGetters = true, ignoreUnknown = true)
 public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

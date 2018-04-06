@@ -175,6 +175,12 @@ export function downloadBoxStickers(storageSlug, itemIds) {
 }
 
 export function postPart(partCreationState) {
+  console.log("----------------")
+  console.log("----------------")
+  console.log(partCreationState.part)
+  console.log("----------------")
+  console.log("----------------")
+  console.log("----------------")
   return dispatch => {
     return fetch(`${server}/storage/parts/create`,
       {

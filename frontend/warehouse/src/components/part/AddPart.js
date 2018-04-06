@@ -12,8 +12,8 @@ class AddPart extends React.Component {
       description: '',
       manufacturer: '',
       manufacturerPartNumber: '',
+      storage: this.props.storageSlug
     },
-
     afterCreation: MODE_WATCH_PART
   }
 
@@ -32,7 +32,6 @@ class AddPart extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.setState({storage: this.props.storageSlug})
     this.props.handleSubmit(this.state)
   }
 
